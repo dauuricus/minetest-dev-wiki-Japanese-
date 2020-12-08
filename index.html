@@ -467,6 +467,8 @@ Error message and password prompt
 
 <li>Mapgen Parameters</li>
 
+<li>mg_flags</li>
+
 <li>MineClone 2</li>
 
 <li>Mod interoperability</li>
@@ -13071,7 +13073,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208180516674" list="[[Mapgen Parameters]]" modified="20201208180516675" title="$:/StoryList">
+<div created="20201208180516674" list="[[Mapgen Parameters]] mg_flags" modified="20201208183851240" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -13132,7 +13134,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20201208040221295" modified="20201208173617452" title="$:/temp/NewTagName">
+<div created="20201208040221295" modified="20201208184304817" title="$:/temp/NewTagName">
 <pre></pre>
 </div>
 <div author="Paco Rivière" core-version="&gt;=5.0.0" created="20201208112229787" dependents="" description="Catalan (Spain)" icon="data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22810%22%20height%3D%22540%22%3E%0A%3Crect%20width%3D%22810%22%20height%3D%22540%22%20fill%3D%22%23FCDD09%22%2F%3E%0A%3Cpath%20stroke%3D%22%23DA121A%22%20stroke-width%3D%2260%22%20d%3D%22M0%2C90H810m0%2C120H0m0%2C120H810m0%2C120H0%22%2F%3E%0A%3C%2Fsvg%3E" modified="20201208112229787" name="ca-ES" original-plugin-type="language" original-tags="" original-title="$:/languages/ca-ES" original-type="application/json" requires-reload="no" server-url="https://tiddlywiki.com/library/v5.1.22/index.html" tags="$:/tags/RemoteAssetInfo" title="$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.22/index.html/$:/languages/ca-ES" type="text/vnd.tiddlywiki" version="5.1.22">
@@ -14420,7 +14422,7 @@ end)
 [[Category:Mapgen]]
 </pre>
 </div>
-<div created="20201208173523822" modified="20201208183707938" tags="mietest dev Mapgen" title="Mapgen Parameters">
+<div created="20201208173523822" modified="20201208184327753" tags="mietest dev Mapgen" title="Mapgen Parameters" type="text/vnd.tiddlywiki">
 <pre>All map generator algorithms have a few common parameters, plus any mapgen-specific options such as noise parameters or threshhold values.  Only mapgen-generic parameters are listed here; mapgen-specific ones are listed in the corresponding mapgen wiki page.
 
 ! Mapgen parameter source precedence
@@ -14508,6 +14510,34 @@ The task of getting and setting mapgen parameters is much trickier than it seems
 
 [[Category:Mapgen]]
 </pre>
+</div>
+<div created="20201208183909528" modified="20201208184313915" tags="Mapgen [[Settings and Commands]]" title="mg_flags" type="text/vnd.tiddlywiki">
+<pre>{{DISPLAYTITLE:mg_flags}}
+The map generator will generate a world according to the mapgen flags that are set for it.&lt;br&gt;
+The general flags are shown below, and each generator may have its own special flags.
+Currently supported map generators are: v5, v6, v7, valleys, carpathian, fractal, flat, singlenode. The map generator is selected in [[minetest.conf]] by setting mg_name.&lt;br&gt;
+In Mapgen v6 the 'decorations' flag controls all decorations except trees and junglegrass, in all other mapgens this flag controls all decorations.
+Flags that are not enabled are not modified from the default. 
+Flags starting with 'no' are used to explicitly disable them.
+
+This is a list of currently supported general flags:
+
+* ''caves'': generate caves
+* ''dungeons'': generate dungeons
+* ''light'': generate lighting
+* ''decorations'': generate decorations
+* ''biomes'': generate biomes
+
+They are set in [[minetest.conf]] before creating a new world.
+
+An example configuration (the default):
+
+* mg_flags = caves,dungeons,light,decorations,biomes
+For a totally flat world without any holes:
+* mg_flags = nocaves,nodungeons,light,nodecorations,biomes and use the flat mapgen
+
+[[Category:Mapgen]]
+[[Category:Settings and Commands]]</pre>
 </div>
 <div created="20201208165500100" modified="20201208165539021" tags="mietest" title="MineClone 2" type="text/vnd.tiddlywiki">
 <pre>https://wiki.minetest.net/Games/MineClone_2</pre>
