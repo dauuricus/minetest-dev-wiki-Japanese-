@@ -15364,9 +15364,10 @@ It is not known if any alternative approaches (besides Player Phyics API) has be
 In the game’s developer documentation, explicitly say that only the game is allowed to set physics, and that external mods aren’t. Resolve and in-game conflicts by hand. This is obviously the least flexible solution, but it's also the simplest. But for larger games with more complex physics, you will quickly run into problems.
 </pre>
 </div>
-<div created="20201208185016341" modified="20201208185046638" tags="" title="Storing Data" type="text/vnd.tiddlywiki">
+<div created="20201208185016341" modified="20201208191115736" tags="" title="Storing Data" type="text/vnd.tiddlywiki">
 <pre>{{LuaTips}}
-==Introduction==
+!! Introduction
+---
 Before Minetest 0.4.16, storing data could be done in different ways:
 * [[NodeMetaRef|Node metadata]]
 * Custom file management
@@ -15375,30 +15376,34 @@ Before Minetest 0.4.16, storing data could be done in different ways:
 &lt;br/&gt;
 Minetest 0.4.16 is a major step forward in that it provides APIs to store information which formerly had to be done using custom code or by abusing existing APIs such as the inventory to store player attributes. This article will give some pointers as to what can be used for what purpose.
 
-==Various Layers for (Meta) Data Storage==
+!! Various Layers for (Meta) Data Storage
 The new organization provided by Minetest for storing information is now as follows:
+
 * [[NodeMetaRef|Node metadata]] is to be used to store extra information for nodes in the world. This mechanism is positional and for nodes
 * [[InvRef|Inventory]] is to be used to store inventory. Older mods still abuse this mechanism for other purposes of course but should migrate to different means of storing data that does not belong in the inventory. This mechanism is for keeping track of chest, player and other inventories
 * [[StorageRef|Mod metadata a.k.a. mod storage]] can be used to store information specific to a mod, such as mod state, configuration data (especially when this can be set at runtime) or even in order to externalize tables from the Lua code. This mechanism is mod level and should be kept local to the mod
 * [[Player|Player attributes]] should be used to store information specific to the player such as custom mod user preferences, non-core engine player state to be persisted (e.g. hunger, XP, mana) and other player specific data you may wish to store. This mechanism is player level and can be used to migrate away from storing player state/ information in inventories
 &lt;br/&gt;
 If the above mechanisms do not fit your use case, you can always consider:
+
 * Custom file management. There is nothing wrong with this of course. It's just that when the engine manages things for you, you do not have to worry about the file management yourself and you can use standardized APIs instead of rolling your own
 * Using a Lua database client or embedded database e.g. FlatDB (https://github.com/uleelx/FlatDB), redis-lua (https://github.com/nrk/redis-lua) or a non pure Lua database binding e.g. Lua SQLite if you feel adventurous
 
-==Migrating Away from Inventory Based Metadata Storage==
+!! Migrating Away from Inventory Based Metadata Storage
+---
 This is probably the most important right now due to &quot;inventory abuse&quot;, and as such the first example provided here. Consider hbhunger which was built before 0.4.16 and was forced to store state in the player inventory (so please do not consider this example as a critique). In [[minetest.register_on_joinplayer]] it had to do:
 
-&lt;source&gt;
+```Lua
 local name = player:get_player_name()
 local inv = player:get_inventory()
 inv:set_size(&quot;hunger&quot;,1)
 hbhunger.hunger[name] = hbhunger.get_hunger_raw(player)
-&lt;/source&gt;
-&lt;br/&gt;
-Where &lt;source enclose=&quot;none&quot;&gt;hbhunger.get_hunger_raw&lt;/source&gt; is called, there is yet more calls to modify the inventory:
+```
 
-&lt;source&gt;
+&lt;br/&gt;
+Where &lt;code&gt;hbhunger.get_hunger_raw&lt;/code&gt; is called, there is yet more calls to modify the inventory:
+
+```Lua
 local inv = player:get_inventory()
 if not inv then return nil end
 local hgp = inv:get_stack(&quot;hunger&quot;, 1):get_count()
@@ -15409,11 +15414,12 @@ else
 	hgp = hgp
 end
 return hgp-1
-&lt;/source&gt;
-&lt;br/&gt;
-And to set the hunger it had &lt;source enclose=&quot;none&quot;&gt;set_hunger_raw&lt;/source&gt; to modify the inventory with new hunger values:
+```
 
-&lt;source&gt;
+&lt;br/&gt;
+And to set the hunger it had &lt;code&gt;set_hunger_raw&lt;/code&gt; to modify the inventory with new hunger values:
+
+```Lua
 local inv = player:get_inventory()
 local name = player:get_player_name()
 local value = hbhunger.hunger[name]
@@ -15424,17 +15430,19 @@ if value &lt; 0 then value = 0 end
 inv:set_stack(&quot;hunger&quot;, 1, ItemStack({name=&quot;:&quot;, count=value+1}))
 
 return true
-&lt;/source&gt;
+```
+
 &lt;br/&gt;
 Obviously the initialization where the inventory has to be prepared for usage can be simplified greatly in the new situation by just calling &lt;source enclose=&quot;none&quot;&gt;get_hunger_raw&lt;/source&gt; in its [[minetest.register_on_joinplayer]]:
 
-&lt;source&gt;
+```Lua
 hbhunger.hunger[name] = hbhunger.get_hunger_raw(player)
-&lt;/source&gt;
-&lt;br/&gt;
-Then &lt;source enclose=&quot;none&quot;&gt;get_hunger_raw&lt;/source&gt; can do:
+```
 
-&lt;source&gt;
+&lt;br/&gt;
+Then &lt;code&gt;get_hunger_raw&lt;/code&gt; can do:
+
+```Lua
 local hgp = tonumber(player:get_attribute(&quot;hunger&quot;))
 if hgp == 0 then
 	hgp = 21
@@ -15443,11 +15451,12 @@ else
 	hgp = hgp
 end
 return hgp-1
-&lt;/source&gt;
-&lt;br/&gt;
-And &lt;source enclose=&quot;none&quot;&gt;set_hunger_raw&lt;/source&gt; can do something like:
+```
 
-&lt;source&gt;
+&lt;br/&gt;
+And &lt;code&gt;set_hunger_raw&lt;/code&gt; can do something like:
+
+```lua
 local name = player:get_player_name()
 local value = hbhunger.hunger[name]
 if not value then return nil end
@@ -15457,14 +15466,15 @@ if value &lt; 0 then value = 0 end
 player:set_attribute(&quot;hunger&quot;, tostring(value + 1))
 
 return true
-&lt;/source&gt;
+```
+
 &lt;br/&gt;
 As can be seen, calls to initialize, store and retrieve inventories, item stacks and associated complexities are simplified in more understandable attribute getters and setters.
 
-==Migrating Away from Custom Mod Storage==
+!! Migrating Away from Custom Mod Storage
 Another example which is more focused on mod settings could be the random_messages mod. This mod comes with a configuration file and one has to copy this file in the world folder. This is a prime example where one could benefit from using a mod storage. The function to read the messages from the world folder is such that:
 
-&lt;source&gt;
+```Lua
 function random_messages.read_messages()
 	local line_number = 1
 	local input = io.open(minetest.get_worldpath()..&quot;/random_messages&quot;,&quot;r&quot;)
@@ -15481,17 +15491,19 @@ function random_messages.read_messages()
 	end
 	io.close(input)
 end
-&lt;/source&gt;
+```
+
 &lt;br/&gt;
 All I/O can be replaced by a single call to retrieve the mod storage at the top of the init.lua (this is a must!) and then populating the messages table:
 
-&lt;source&gt;
+```Lua
 local mod_storage = minetest.get_mod_storage()
 
 function random_messages.read_messages()
 	random_message.messages = mod_storage:to_table() -- Assuming there are only messages in the mod configuration
 end
-&lt;/source&gt;
+```
+
 &lt;br/&gt;
 If the file in e.g. worlds/yourworld/mod_storage/random_messages was formatted properly you would already be done loading the random messages. What's even better is that you can now add chat commands to manage the messages table and e.g. store the table via mod storage's &lt;source enclose=&quot;none&quot;&gt;from_table&lt;/source&gt; when the chat command is run or the server is shutdown. This way you can very easily add messages at runtime without having to restart the server while making sure these messages are persisted across server restarts.
 </pre>
