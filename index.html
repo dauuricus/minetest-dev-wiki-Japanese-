@@ -13071,7 +13071,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208173302460" list="[[Mapgen Parameters]] [[Mapgen memory optimisations]]" modified="20201208173302460" title="$:/StoryList">
+<div created="20201208180516674" list="[[Mapgen Parameters]]" modified="20201208180516675" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14091,8 +14091,8 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20201208112229741" modified="20201208112229741" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.22/index.html" url="https://tiddlywiki.com/library/v5.1.22/index.html">
 <pre>loaded</pre>
 </div>
-<div created="20201208063206405" modified="20201208160902791" title="$:/theme">
-<pre>$:/themes/tiddlywiki/heavier</pre>
+<div created="20201208063206405" modified="20201208180852832" title="$:/theme">
+<pre>$:/themes/tiddlywiki/snowwhite</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Centralises the story river" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.1.22">
 <pre>{
@@ -14420,10 +14420,11 @@ end)
 [[Category:Mapgen]]
 </pre>
 </div>
-<div created="20201208173523822" modified="20201208173701767" tags="mietest dev Mapgen" title="Mapgen Parameters">
+<div created="20201208173523822" modified="20201208175905320" tags="mietest dev Mapgen" title="Mapgen Parameters">
 <pre>All map generator algorithms have a few common parameters, plus any mapgen-specific options such as noise parameters or threshhold values.  Only mapgen-generic parameters are listed here; mapgen-specific ones are listed in the corresponding mapgen wiki page.
 = Mapgen parameter source precedence =
 There are several sources which the map generator may retrieve parameters from.  In order from highest precedence to lowest they are:
+
 * Hard-coded
 * Lua mods
 * map_meta.txt
@@ -14432,10 +14433,12 @@ There are several sources which the map generator may retrieve parameters from. 
 * Default settings (set in defaultsettings.cpp)
 * Default object constructor values
 
-= List of mapgen parameters =
-== Mapgen name ==
+! List of mapgen parameters
+!! Mapgen name 
+---
 The name of the map generator algorithm being used.
 Currently supported:
+
 {| class=&quot;wikitable&quot;
 |-
 ! Mapgen name !! Developer responsible !! Description
@@ -14456,32 +14459,36 @@ Currently supported:
 |-
 | singlenode || celeron55 || Places only a single node everywhere, namely the one aliased to mapgen_singlenode (by default air).  Intended to be used by mods that perform total mapgen takeovers.
 |}
+
 example: &lt;code&gt;mg_name = v7&lt;/code&gt;
 
-== Seed ==
+!! Seed
+---
 A 64-bit unsigned integer value.  At this time, only the lower 32 bits are currently used for randomization.&lt;br&gt;
 example: &lt;code&gt;seed = 1246106421&lt;/code&gt;
 
-== Water level ==
+!! Water level 
 The y coordinate at which water starts being placed, for mapgens that do place water.
 &lt;br /&gt;
 This is also the position at which blocks are assumed to be underground if no block above is present, and thus is not given sunlight.&lt;br&gt;
 example: &lt;code&gt; water_level = 1 &lt;/code&gt;
 
-== Mapgen Limit ==
+!! Mapgen Limit 
 Limit of map generation, in nodes, in all 6 directions from (0, 0, 0).
+
 * Only mapchunks completely within the mapgen limit are generated.
 * Value is stored per-world.
 * type: int min: 0 max: 31000&lt;br&gt;
 example : &lt;code&gt;mapgen_limit = 4500&lt;/code&gt;
 
-== Flags parameter ==
+!! Flags parameter 
 The flags parameter is a set of booleans indicating whether or not a certain option is enabled.  Global flags applying to all map generators are listed in [[mg_flags]]. Other map generator-specific flags are shown below.
 &lt;br /&gt;
 Like all other config and Lua flag fields, they are represented as a comma-delimited string.
 E.g. the flag string &quot;trees, caves, flat&quot; would direct the Mapgen to create flat terrain with trees and caves.
 &lt;br /&gt;
 An exhaustive list of currently recognized Mapgen flags:
+
 {| class=&quot;wikitable&quot;
 |-
 ! Lua/config flag name !! Defaults  !! Allowed values
@@ -14501,17 +14508,19 @@ An exhaustive list of currently recognized Mapgen flags:
 
 Other fine-tuning parameters are available for each map generator, and can be found in lua_api.txt.
 
-== Chunk size ==
+!! Chunk size 
 The side length (in MapBlocks) of the cubic area that is generated at once.  Default is 5; larger values take longer to generate but blocks generate quicker on average and could produce larger, more intricate caves and dungeons.
 &lt;br /&gt;
 Don't mess around with this if you don't know what you're doing!  This parameter cannot be modified through the Lua API.
 
-= Mapgen Parameter Lua API =
+! Mapgen Parameter Lua API 
 The task of getting and setting mapgen parameters is much trickier than it seems it should be.  For this reason there exists a small but effective set of API for accomplishing this.&lt;br /&gt;
-== [[minetest.register_on_mapgen_init|minetest.register_on_mapgen_init()]] ==
+!! [[minetest.register_on_mapgen_init|minetest.register_on_mapgen_init()]] 
+---
 {{:minetest.register_on_mapgen_init}}
 
-== [[minetest.set_mapgen_params|minetest.set_mapgen_params()]] ==
+!! [[minetest.set_mapgen_params|minetest.set_mapgen_params()]] 
+---
 {{:minetest.set mapgen params}}
 
 {{Incomplete}}
