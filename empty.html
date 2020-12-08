@@ -427,6 +427,10 @@ Error message and password prompt
 
 <li>Lua</li>
 
+<li>Lua API Documentation</li>
+
+<li>LuaJIT</li>
+
 <li>Main Page</li>
 
 <li>minetest dev wiki</li>
@@ -12658,7 +12662,7 @@ Error message and password prompt
 <div created="20201208071534353" modified="20201208095337958" title="$:/state/plugin-info--906510658-$:/plugins/tiddlywiki/codemirror--1798174986">
 <pre>usage</pre>
 </div>
-<div created="20201208084806998" modified="20201208095320657" title="$:/state/sidebar">
+<div created="20201208084806998" modified="20201208103147814" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20201208045133702" modified="20201208063603829" title="$:/state/tab--1963855381">
@@ -12682,7 +12686,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208074912259" list="[[Modding FAQ]] [[minetest dev wiki]]" modified="20201208095717944" title="$:/StoryList">
+<div created="20201208074912259" list="[[Modding FAQ]] [[Modding Overview]] [[Lua API Documentation]] [[modding API]] LuaJIT" modified="20201208102422529" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -13868,6 +13872,45 @@ LuaJIT が使用される場合、ソースの[[ Lua フォルダ|https://github
 [[Category:Lua]]
 </pre>
 </div>
+<div created="20201208102432393" modified="20201208103105574" tags="dev Lua [[modding API]] mietest" title="Lua API Documentation" type="text/vnd.tiddlywiki">
+<pre>The Lua API of Minetest is extensively documented. This page tells you which documentation exists, and where to find it.
+
+!! Official documentation 
+---
+!!! lua_api.txt 
+
+This is the most important document you need during modding. 
+
+This is a text file containing the only (!) official reference documentation for the entire Lua API. You can find it in the &lt;code&gt;doc&lt;/code&gt; directory of your Minetest installation. You can also read the latest (in-development) version of this file online here: [[lua_api.txt|https://github.com/minetest/minetest/blob/master/doc/lua_api.txt]]. But we strongly recommend you read the file installed on your computer so you read the correct version.
+
+Note this assumes you are already familiar with Lua programming. If you aren't, take a look into the [[#Minetest_Modding_Book|Minetest Modding Book]] first.
+
+!!! Other text files 
+In the &lt;code&gt;doc&lt;/code&gt; directory of your Minetest installation, you will find a few other text files with related, but less important information and documentation.
+
+!! Unofficial Documentation 
+---
+!!! Minetest Modding Book 
+A very extensive introduction into Minetest modding, great for complete beginners. Written by rubenwardy, a long-time developer for Minetest.
+
+https://rubenwardy.com/minetest_modding_book/en/index.html
+
+!!! lua_api.txt, but more readable 
+You can view a more readable version of this document here: https://minetest.gitlab.io/minetest/ It's the same content, just nicely formatted and up to date.
+
+!!! Minetest Developer Wiki 
+The very wiki you are reading right now is not meant to document the Lua API itself, but instead to document common development practices, pitfalls and general advice or agreed-upon guidelines for engine, game and mod developers.
+
+The wiki is useful to find some nice tips and tricks that would not belong into a reference documentation.
+
+However, we have a bit of a mess right now: There is currently a large amount of pages that were copied from lua_api.txt ages ago which are all horribly outdated now. If you want to know what a specific function XYZ does, do NOT use this wiki, use lua_api.txt. See also: [[MinetestWiki:Lua API Wiki Documentation Cleanup]]
+
+[[Category:Modding API]]
+</pre>
+</div>
+<div created="20201208101015274" modified="20201208101121182" tags="Lua" title="LuaJIT" type="text/vnd.tiddlywiki">
+<pre>[[https://luajit.org/]]</pre>
+</div>
 <div created="20201208040515596" modified="20201208090638899" tags="mietest modding dev" title="Main Page" type="text/vnd.tiddlywiki">
 <pre>{{Languages}}
 
@@ -13887,7 +13930,7 @@ The Minetest Wiki for players is located at [[wiki.minetest.net|https://wiki.min
 <div created="20201208040141179" modified="20201208095316041" tags="mietest" title="minetest dev wiki" type="text/vnd.tiddlywiki">
 <pre>index</pre>
 </div>
-<div created="20201208091517249" modified="20201208100042171" tags="dev Lua mietest modding [[modding API]]" title="Modding FAQ">
+<div created="20201208091517249" modified="20201208102029547" tags="dev Lua mietest modding [[modding API]]" title="Modding FAQ">
 <pre>{{Languages}}
 
 This page includes frequently asked questions about mod and game development for Minetest. For general advice, see also [[Modding Tips]].
@@ -13961,7 +14004,7 @@ To do this, add &lt;code&gt;use_texture_alpha = true&lt;/code&gt; to the node de
 
 !! How do I generate a custom map? 
 ---
-First, there are a bunch of [[Mapgen Parameters|mapgen parameters]] you can change for the built-in mapgens, so you might be able to get what you want without touching Lua at all.  You may also be able to find an existing mod that does what you want, so check the [[ mod list|http://wiki.minetest.net/Mod_list]] on the main Minetest Wiki and the [[Mod Releases|https://forum.minetest.net/viewforum.php?f=11] section of the forums (the community has already written several mods for various map generation, importing real-world data, editing sections of existing worlds, etc.).  Finally, the Lua modding API has recently been enhanced to make custom mapgens more feasible to write without modifying the core Minetest engine.  It's not for the faint of heart but if you want to dive in, start by reading up on:
+First, there are a bunch of [[Mapgen Parameters|mapgen parameters]] you can change for the built-in mapgens, so you might be able to get what you want without touching Lua at all.  You may also be able to find an existing mod that does what you want, so check the [[ mod list|http://wiki.minetest.net/Mod_list]] on the main Minetest Wiki and the [[Mod Releases|https://forum.minetest.net/viewforum.php?f=11]] section of the forums (the community has already written several mods for various map generation, importing real-world data, editing sections of existing worlds, etc.).  Finally, the Lua modding API has recently been enhanced to make custom mapgens more feasible to write without modifying the core Minetest engine.  It's not for the faint of heart but if you want to dive in, start by reading up on:
 
 * [[:Category:Mapgen]]
 * [[VoxelManip]]: the voxel manipulator, for fast modification of large chunks of nodes.
@@ -13975,7 +14018,7 @@ This is a pretty advanced task to do in a mod, so expect to also have to do some
 ---
 As decribed in &lt;code&gt;lua_api.txt&lt;/code&gt;, biomes are defined by heat and humidity points in a Voronoi diagram, with heat and humidity usually ranging from 0 and 100, but in extreme cases they can even reach -25 and 125.
 
-Paramat shows how it works for Minetest Game here: [https://forum.minetest.net/viewtopic.php?f=47&amp;t=15272&amp;start=250#p257528]
+Paramat shows how it works for Minetest Game here: [[https://forum.minetest.net/viewtopic.php?f=47&amp;t=15272&amp;start=250#p257528]]
 
 [[GeoGebra|https://www.geogebra.org/]] is a software tool which can be used to graphically align the Voronoi cells, making balancing a lot easier. Paramat explained it here: [https://forum.minetest.net/viewtopic.php?p=230857#p230857]
 
