@@ -457,6 +457,8 @@ Error message and password prompt
 
 <li>Main Page</li>
 
+<li>Mapgen memory optimisations</li>
+
 <li>Modding FAQ</li>
 
 <li>Modding Intro</li>
@@ -13041,7 +13043,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208120514928" list="[[Modding Overview]] [[Modding Tips]]" modified="20201208121058112" title="$:/StoryList">
+<div created="20201208120514928" list="[[Modding Overview]] [[Modding Tips]] [[Mapgen memory optimisations]]" modified="20201208122307652" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14291,6 +14293,121 @@ The Minetest Wiki for players is located at [[wiki.minetest.net|https://wiki.min
 {{Main Content Links}}
 
 [[Category:Root-Category]]
+</pre>
+</div>
+<div created="20201208122330407" modified="20201208123243356" tags="dev modding [[modding API]] mietest" title="Mapgen memory optimisations">
+<pre>{{LuaTips}}
+
+''This page is based on Paramat's [[forum topic|https://forum.minetest.net/viewtopic.php?t=16043]] and has been updated for Minetest 5.0.0.''
+
+Lua map generators can use excessive memory if they are not using these 3 optimisations. Not using these optimizations can eventually lead to OOM (out-of-memory) errors because the Lua mapgen wasted way too much memory. Applying this advice is '''strongly recommended''', and should make OOM errors much less likely. But there is no guarantee this will fix all OOM errors, your mapgen might still use excessive memory for other reasons, or the computer just has very limited memory.
+
+!! Perlin noise objects: Only create once 
+---
+
+The noise object is created by &lt;code&gt;minetest.get_perlin_map()&lt;/code&gt;.
+It has to be created inside &lt;code&gt;register_on_generated()&lt;/code&gt; to be usable, but only needs to be created once, many mapgen mods create it for every mapchunk, this consumes memory unnecessarily.
+
+Localise the noise object outside &lt;code&gt;register_on_generated()&lt;/code&gt; and initialise it to &lt;code&gt;nil&lt;/code&gt;.
+See the code below for how to create it once only.
+The creation of the perlin noise tables with &lt;code&gt;get_3d_map_flat()&lt;/code&gt; etc. is done per mapchunk
+
+```Lua
+-- Initialize noise objects to nil
+
+local nobj_terrain = nil
+local nobj_biome = nil
+
+-- ...
+-- ...
+
+-- On generated function
+minetest.register_on_generated(function(minp, maxp, seed)
+   -- ...
+   -- ...
+   nobj_terrain = nobj_terrain or minetest.get_perlin_map(np_terrain, chulens3d)
+   nobj_biome = nobj_biome or minetest.get_perlin_map(np_biome, chulens2d)
+   
+   nobj_terrain:get_3d_map_flat(minpos3d, nvals_terrain)
+   nobj_biome:get2d_map_flat(minpos2d, nvals_biome)
+   -- ...
+   -- ...
+end)
+```
+
+!! Perlin noise tables: Re-use a single table 
+---
+
+The Lua table that stores the noise values for a mapchunk is big, especially for 3D noise (80&lt;sup&gt;3&lt;/sup&gt; = 512000 values).
+Many Lua mapgens are creating a new table for every mapchunk, while the previous tables are only cleared out slowly by garbage collection, resulting in a large and unnecessary memory use.
+
+A &lt;code&gt;buffer&lt;/code&gt; parameter was added in 0.4.13 to avoid this, a single table is re-used by overwriting the former values.
+
+ For each of the functions with an optional `buffer` parameter:  If `buffer` is not
+ nil, this table will be used to store the result instead of creating a new table.
+  
+ #### Methods
+ * `get_2d_map_flat(pos, buffer)`: returns a flat `&lt;size.x * size.y&gt;` element array of 2D noise
+ with values starting at `pos={x=,y=}`
+ * `get_3d_map_flat(pos, buffer)`: Same as `get_2d_map_flat`, but 3D noise
+
+Localise the noise buffer outside &lt;code&gt;register_on_generated()&lt;/code&gt;
+Use the &lt;code&gt;buffer&lt;/code&gt; parameter in &lt;code&gt;get_3d_map_flat()&lt;/code&gt; etc.
+
+```Lua
+-- Localise noise buffers
+local nvals_terrain = {}
+local nvals_biome = {}
+-- ...
+-- ...
+-- On generated function
+minetest.register_on_generated(function(minp, maxp, seed)
+   -- ...
+   -- ...
+   nobj_terrain:get3d_map_flat(minpos3d, nvals_terrain)
+   nobj_biome:get2d_map_flat(minpos2d, nvals_biome)
+   -- ...
+   -- ...
+end)
+```
+
+!! Lua voxelmanip table: Re-use a single table 
+---
+
+The Lua table that stores the node content IDs for a mapchunk plus the mapblock shell is big (112&lt;sup&gt;3&lt;/sup&gt; = 1404928 values).
+Many Lua mapgens are creating a new table for every mapchunk, while the previous tables are only cleared out slowly by garbage collection, resulting in a large and unnecessary memory use.
+
+A &lt;code&gt;buffer&lt;/code&gt; parameter was added in 0.4.13 to avoid this, a single table is re-used by overwriting the former values.
+
+In Minetest 0.4.15, a &lt;code&gt;buffer&lt;/code&gt; parameter was also added to &lt;code&gt;get_param2_data()&lt;/code&gt;.
+
+ * `get_data([buffer])`: Retrieves the node content data loaded into the `VoxelManip` object
+     * returns raw node data in the form of an array of node content IDs
+     * if the param `buffer` is present, this table will be used to store the result instead
+ * `get_param2_data([buffer])`: Gets the raw `param2` data read into the `VoxelManip` object
+     * Returns an array (indices 1 to volume) of integers ranging from `0` to `255`
+     * If the param `buffer` is present, this table will be used to store the result instead
+
+Localise the data buffer outside &lt;code&gt;register_on_generated()&lt;/code&gt;.
+Use the buffer in &lt;code&gt;get_data()&lt;/code&gt; or &lt;code&gt;get_param2_data()&lt;/code&gt;.
+
+```Lua
+-- Localise data buffer
+local data = {}
+
+-- On generated function
+minetest.register_on_generated(function(minp, maxp, seed)
+   -- ...
+   -- ...
+   local vm, emin, emax = minetest.get_mapgen_object(&quot;voxelmanip&quot;)
+   local area = VoxelArea:new{MinEdge = emin, MaxEdge = emax}
+   vm:get_data(data)
+   -- ...
+   -- ...
+end)
+```
+
+[[Category:Mapgen]]
 </pre>
 </div>
 <div created="20201208091517249" modified="20201208104412815" tags="dev Lua mietest modding [[modding API]]" title="Modding FAQ">
