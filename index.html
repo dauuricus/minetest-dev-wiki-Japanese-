@@ -143,9 +143,13 @@ Error message and password prompt
 
 <li>$:/config/AnimationDuration</li>
 
+<li>$:/config/AutoSave</li>
+
 <li>$:/config/codemirror/keyMap</li>
 
 <li>$:/config/codemirror/lineNumbers</li>
+
+<li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/close-all</li>
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/refresh</li>
 
@@ -215,7 +219,11 @@ Error message and password prompt
 
 <li>$:/state/tab--86143343</li>
 
+<li>$:/state/tab-1163638994</li>
+
 <li>$:/state/tab-1749438307</li>
+
+<li>$:/state/tab-2065006209</li>
 
 <li>$:/state/tab/moresidebar-1850697562</li>
 
@@ -486,12 +494,18 @@ Error message and password prompt
 <div created="20201208045840330" modified="20201208045840330" title="$:/config/AnimationDuration">
 <pre>200</pre>
 </div>
+<div created="20201208144737811" modified="20201208144737811" title="$:/config/AutoSave">
+<pre>no</pre>
+</div>
 <div created="20201208074946507" modified="20201208074946507" title="$:/config/codemirror/keyMap" type="string">
 <pre>vim
 </pre>
 </div>
 <div created="20201208072021193" modified="20201208072021193" title="$:/config/codemirror/lineNumbers" type="bool">
 <pre>true</pre>
+</div>
+<div created="20201208144642188" modified="20201208144642188" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/close-all">
+<pre>show</pre>
 </div>
 <div created="20201208061904543" modified="20201208061904543" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/refresh">
 <pre>show</pre>
@@ -13015,7 +13029,7 @@ Error message and password prompt
 <div created="20201208103610192" modified="20201208103627332" title="$:/state/plugin-info-896098052-$:/plugins/tiddlywiki/markdown--436478829">
 <pre>usage</pre>
 </div>
-<div created="20201208084806998" modified="20201208120512573" title="$:/state/sidebar">
+<div created="20201208084806998" modified="20201208152607247" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20201208045133702" modified="20201208121110136" title="$:/state/tab--1963855381">
@@ -13030,22 +13044,28 @@ Error message and password prompt
 <div created="20201208071959803" modified="20201208071959803" title="$:/state/tab--697582678">
 <pre>$:/core/ui/ControlPanel/Settings/CodeMirror</pre>
 </div>
-<div created="20201208104313822" modified="20201208104313822" title="$:/state/tab--86143343">
+<div created="20201208104313822" modified="20201208144855493" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Themes</pre>
 </div>
-<div created="20201208045028836" modified="20201208121106074" title="$:/state/tab-1749438307">
+<div created="20201208152628129" modified="20201208152628129" title="$:/state/tab-1163638994">
+<pre>$:/core/ui/MoreSideBar/Plugins/Theme</pre>
+</div>
+<div created="20201208045028836" modified="20201208145027044" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Appearance</pre>
+</div>
+<div created="20201208144739333" modified="20201208144822329" title="$:/state/tab-2065006209">
+<pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
 <div created="20201208090520032" modified="20201208090520032" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Plugins</pre>
 </div>
-<div created="20201208040117580" modified="20201208121052169" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20201208040117580" modified="20201208152624871" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/More</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208120514928" list="[[Mod interoperability]]" modified="20201208125622229" title="$:/StoryList">
+<div created="20201208120514928" list="$:/themes/tiddlywiki/heavier $:/themes/tiddlywiki/snowwhite $:/themes/tiddlywiki/centralised [[Mod interoperability]]" modified="20201208152637003" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14065,8 +14085,8 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20201208112229741" modified="20201208112229741" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.22/index.html" url="https://tiddlywiki.com/library/v5.1.22/index.html">
 <pre>loaded</pre>
 </div>
-<div created="20201208063206405" modified="20201208121112768" title="$:/theme">
-<pre>$:/themes/tiddlywiki/heavier</pre>
+<div created="20201208063206405" modified="20201208152701393" title="$:/theme">
+<pre>$:/themes/tiddlywiki/vanilla</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Centralises the story river" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.1.22">
 <pre>{
@@ -14412,7 +14432,7 @@ end)
 [[Category:Mapgen]]
 </pre>
 </div>
-<div created="20201208124040803" modified="20201208131827863" tags="dev Lua modding [[Lua Tips]] mietest" title="Mod interoperability" type="text/vnd.tiddlywiki">
+<div created="20201208124040803" modified="20201208152544495" tags="dev Lua modding [[Lua Tips]] mietest" title="Mod interoperability" type="text/vnd.tiddlywiki">
 <pre>{{LuaTips}}
 This page is aimed towards modders and lists a couple of mods and conventions which are known in the community.
 
@@ -14495,29 +14515,29 @@ This section needs to be finished. Notes for general interoperability requiremen
 
 !!!! Other gameplay concepts 
 * [[Achievements|https://forum.minetest.net/viewtopic.php?f=11&amp;t=4870]] [awards]: API for adding your own achievements
-* [https://forum.minetest.net/viewtopic.php?f=11&amp;t=7292 Treasurer] [treasurer]: API for randomly selecting a treasure out of a pool of previously registered treasures
-* [https://forum.minetest.net/viewtopic.php?f=9&amp;t=15733 Skylayer] [skylayer]: Utility mod to help manage sky layers; supports smooth transitions
+* [[Treasurer|https://forum.minetest.net/viewtopic.php?f=11&amp;t=7292]] [treasurer]: API for randomly selecting a treasure out of a pool of previously registered treasures
+* [[Skylayer|https://forum.minetest.net/viewtopic.php?f=9&amp;t=15733]] [skylayer]: Utility mod to help manage sky layers; supports smooth transitions
 
 !!!! Testing for pipeworks fake players 
-[https://forum.minetest.net/viewtopic.php?f=11&amp;t=2155 Pipeworks] [pipeworks] provides automation and creates fake players for that purpose. If you need to, these can be distinguished from real players by the field &lt;code&gt;is_fake_player&lt;/code&gt; in their definition.
+[[Pipeworks|https://forum.minetest.net/viewtopic.php?f=11&amp;t=2155]] [pipeworks] provides automation and creates fake players for that purpose. If you need to, these can be distinguished from real players by the field &lt;code&gt;is_fake_player&lt;/code&gt; in their definition.
 
 !!! Nodes 
 !!!! Templates 
 Many mods offer convenience functions to add new new nodes which follow a simple template, like a fence made from a different kind of wood.
 
 * Standalone mods
-** [https://forum.minetest.net/viewtopic.php?f=11&amp;t=14910 Furniture] [furniture]: Tables, chairs and stools
-** [https://forum.minetest.net/viewtopic.php?f=11&amp;t=15724 more shelves] [moreshelves]: Shelves
-** [https://forum.minetest.net/viewtopic.php?f=9&amp;t=15265 flower pots] [flowerpots]: Flower pots
-** [https://forum.minetest.net/viewtopic.php?f=9&amp;t=15731 Minetest Game Plus] [mtg_plus]: Cups
-** [https://forum.minetest.net/viewtopic.php?f=9&amp;t=15399 corrupt shapes] [csh]: Additional shapes: Cylinders and related shapes
-** [https://forum.minetest.net/viewtopic.php?f=11&amp;t=10425 mymillwork] [mymillwork]: Additional shapes: Crown moulds, beams, columns, baseboards
-** [https://forum.minetest.net/viewtopic.php?f=11&amp;t=13762 kaeza's/VanessaE's signs library] [signs_lib]: Advanced signs
-** [https://forum.minetest.net/viewtopic.php?f=11&amp;t=12999 Biome library] [biome_lib]: Growing plants
-** [https://github.com/pyrollo/display_api Display API] [display_api]: Nodes with a dynamic display, e.g. digital clocks. See [https://forum.minetest.net/viewtopic.php?f=11&amp;t=13563 Display Modpack]
-** [https://github.com/pyrollo/font_api Font API] [font_api]: Make textures from text and fonts. See [https://forum.minetest.net/viewtopic.php?f=11&amp;t=13563 Display Modpack]
-** [https://github.com/pyrollo/signs_api Signs API] [signs_api]: Combining Font API and Display API, easy creation of any kind of signs. See [https://forum.minetest.net/viewtopic.php?f=11&amp;t=13563 Display Modpack]
-* [https://forum.minetest.net/viewtopic.php?f=15&amp;t=9724 Minetest Game]
+** [[Furniture|https://forum.minetest.net/viewtopic.php?f=11&amp;t=14910]] [furniture]: Tables, chairs and stools
+** [[more shelves|https://forum.minetest.net/viewtopic.php?f=11&amp;t=15724]] [moreshelves]: Shelves
+** [[flower pots|https://forum.minetest.net/viewtopic.php?f=9&amp;t=15265]] [flowerpots]: Flower pots
+** [[Minetest Game Plus|https://forum.minetest.net/viewtopic.php?f=9&amp;t=15731]] [mtg_plus]: Cups
+** [[corrupt shapes|https://forum.minetest.net/viewtopic.php?f=9&amp;t=15399]] [csh]: Additional shapes: Cylinders and related shapes
+** [[mymillwork|https://forum.minetest.net/viewtopic.php?f=11&amp;t=10425]] [mymillwork]: Additional shapes: Crown moulds, beams, columns, baseboards
+** [[kaeza's/VanessaE's signs library|https://forum.minetest.net/viewtopic.php?f=11&amp;t=13762]] [signs_lib]: Advanced signs
+** [[Biome library|https://forum.minetest.net/viewtopic.php?f=11&amp;t=12999]] [biome_lib]: Growing plants
+** [[Display API|https://github.com/pyrollo/display_api]] [display_api]: Nodes with a dynamic display, e.g. digital clocks. See [[Display Modpack|https://forum.minetest.net/viewtopic.php?f=11&amp;t=13563]]
+** [[Font API|https://github.com/pyrollo/font_api]] [font_api]: Make textures from text and fonts. See [[Display Modpack|https://forum.minetest.net/viewtopic.php?f=11&amp;t=13563]]
+** [[Signs API|https://github.com/pyrollo/signs_api]] [signs_api]: Combining Font API and Display API, easy creation of any kind of signs. See [[Display Modpack|https://forum.minetest.net/viewtopic.php?f=11&amp;t=13563]]
+* [[Minetest Game|https://forum.minetest.net/viewtopic.php?f=15&amp;t=9724]]
 ** [default]: Fences
 ** [beds]: Beds
 ** [doors]: Doors and trapdoors
@@ -14530,8 +14550,8 @@ Many mods offer convenience functions to add new new nodes which follow a simple
 !!!! Modifications 
 These mods extend the possibilities of node definitions:
 
-* [https://github.com/pithydon/falling_nodes More ways for nodes to fall.] [falling_nodes]: Allows you to define nodes with different falling rules and behaviours
-* [https://forum.minetest.net/viewtopic.php?f=9&amp;t=15991 Walkover] [walkover]: Adds callback function which is triggered when a player walks over the node
+* [[More ways for nodes to fall.|https://github.com/pithydon/falling_nodes]] [falling_nodes]: Allows you to define nodes with different falling rules and behaviours
+* [[Walkover|https://forum.minetest.net/viewtopic.php?f=9&amp;t=15991]] [walkover]: Adds callback function which is triggered when a player walks over the node
 
 !!!! Causing explosions 
 Whenever you want to cause an explosion which affects other nodes, make sure you to try to call the node's [[minetest.register_node#on_blast|on_blast]] method first before using your own explosion handling. The reason for this is that e.g. your explosion could otherwise destroy a node which is normally immune to explosions.
@@ -14564,7 +14584,7 @@ You should only use [[minetest.remove_node]] directly for technical and/or debug
 Recommendation: First check if any of the node's callback functions are appropriate to be called (e.g. call on_blast when you create an explosion). If you want to destroy a block in another manner, first check if the node is not indestructible (checking fields like &lt;code&gt;diggable&lt;/code&gt; and other fields mentioned above might usually work). If the block does not seem to be indestructible, calling [[minetest.remove_node]] should normally be safe.
 
 !!!! Preventing pistons from pushing or pulling your node 
-The [https://forum.minetest.net/viewtopic.php?f=11&amp;t=628 Mesecons] modpack has pistons which are able to push and pull other blocks around. By default, this happens for pretty much all blocks. If you want to prevent this behaviour for your block, you have to explicitly exclude your block.
+The [[Mesecons|https://forum.minetest.net/viewtopic.php?f=11&amp;t=628]] modpack has pistons which are able to push and pull other blocks around. By default, this happens for pretty much all blocks. If you want to prevent this behaviour for your block, you have to explicitly exclude your block.
 
 To do this for a node “example:myblock”, add the line “mesecons_mvps?” to &lt;code&gt;depends.txt&lt;/code&gt; and the following code after the registration function of your node:
 
@@ -14575,30 +14595,30 @@ end
 ```
 
 !!!! Matching patterns of nodes 
-The [https://forum.minetest.net/viewtopic.php?f=11&amp;t=14129 multiblock] library provides functions for checking if some group of nodes form a certain structure, while returning &quot;captures&quot; of specific nodes within the structure.
+The [[multiblock|https://forum.minetest.net/viewtopic.php?f=11&amp;t=14129]] library provides functions for checking if some group of nodes form a certain structure, while returning &quot;captures&quot; of specific nodes within the structure.
 
 !!! Interface 
 !!!! Showing status information 
 If you create a new player attribute/stat (like health) and you want to expose it to the interface somehow, you can use:
 
-* [https://forum.minetest.net/viewtopic.php?f=11&amp;t=11153 HUD Bars] [hudbars]: Add your own indicators like the “hearts” for health. Displayed in either a “progress bar”-like fashion, the classic statbars like in vanilla Minetest or a variant of the classic statbars with a simple background
-* [https://forum.minetest.net/viewtopic.php?f=9&amp;t=13795&amp;p=202584 HUD Monitors API] [hud_monitors]: Simple API to add semi-permanent text messages on the player's screen
+* [[HUD Bars|https://forum.minetest.net/viewtopic.php?f=11&amp;t=11153]] [hudbars]: Add your own indicators like the “hearts” for health. Displayed in either a “progress bar”-like fashion, the classic statbars like in vanilla Minetest or a variant of the classic statbars with a simple background
+* [[HUD Monitors API|https://forum.minetest.net/viewtopic.php?f=9&amp;t=13795&amp;p=202584]] [hud_monitors]: Simple API to add semi-permanent text messages on the player's screen
 
 !!!! Messages 
 For showing messages to players.
-* [https://forum.minetest.net/viewtopic.php?f=9&amp;t=12720 Central Message] [central_message]: Simple API to show messages at the center of the screen for a short time
+* [[Central Message|https://forum.minetest.net/viewtopic.php?f=9&amp;t=12720]] [central_message]: Simple API to show messages at the center of the screen for a short time
 
 !!!! Inventory menu enhancements 
 Some mods enhance or change the inventory menu and provide an API to add buttons and other things to the inventory menu. This can come in handy if you have made your own formspec and seek for ways to access them.
 
 * Simple Fast Inventory [sfinv]: Part of Minetest Game, you can add custom tabs to the inventory menu. See https://rubenwardy.com/minetest_modding_book/en/chapters/sfinv.html
-* [https://forum.minetest.net/viewtopic.php?f=9&amp;t=16079&amp;p=244441 Simple Fast Inventory Buttons] [sfinv_buttons]: Adds a new tab “More” to the inventory menu of Minetest Game, in which mods can add buttons for doing any action you want
-* [https://forum.minetest.net/viewtopic.php?f=11&amp;t=12767 Unified Inventory] [unified_inventory]: Supports adding buttons for doing any action you want (undocumented API)
-* [https://forum.minetest.net/viewtopic.php?f=11&amp;t=6204 Inventory++] [inventory_plus]: Supports adding buttons for adding “sub-menus” to the inventory menu. This mod does not work well together with newer versions of Minetest Game but it may still be usable for some other games
+* [[Simple Fast Inventory Buttons|https://forum.minetest.net/viewtopic.php?f=9&amp;t=16079&amp;p=244441]] [sfinv_buttons]: Adds a new tab “More” to the inventory menu of Minetest Game, in which mods can add buttons for doing any action you want
+* [[Unified Inventory|https://forum.minetest.net/viewtopic.php?f=11&amp;t=12767]] [unified_inventory]: Supports adding buttons for doing any action you want (undocumented API)
+* [[Inventory++|https://forum.minetest.net/viewtopic.php?f=11&amp;t=6204]][inventory_plus]: Supports adding buttons for adding “sub-menus” to the inventory menu. This mod does not work well together with newer versions of Minetest Game but it may still be usable for some other games
 
 !!!! Formspecs 
-* [https://forum.minetest.net/viewtopic.php?f=11&amp;t=7553&amp;p=116028 Smart Formspecs] [smartfs]: Simplification and enhancement of the formspec API
-* [https://forum.minetest.net/viewtopic.php?t=20109 Select Item] [select_item]: Dialog to select an item
+* [[Smart Formspecs|https://forum.minetest.net/viewtopic.php?f=11&amp;t=7553&amp;p=116028]] [smartfs]: Simplification and enhancement of the formspec API
+* [[Select Item|https://forum.minetest.net/viewtopic.php?t=20109]] [select_item]: Dialog to select an item
 
 !!! Decorational 
 !!!! Colors 
@@ -14606,17 +14626,17 @@ If your mod provides blocks in multiple colors, there are various mods and conve
 
 It is strongly recommended you only use colors which follow an agreed-upon set of predefined colors.
 A basic set of 15 colors is defined in the “dye” mod in Minetest Game. Read the source code to learn more. Other mods provide an extended set of dyes.
-The mod [https://forum.minetest.net/viewtopic.php?id=2178 Unified Dyes] [unifieddyes] extends the set of colors to 90 colors.
+The mod [[Unified Dyes|https://forum.minetest.net/viewtopic.php?id=2178]] [unifieddyes] extends the set of colors to 90 colors.
 
 Other specific mods for consideration:
 
 * Colorization by crafting: Consider if you want to add crafting recipes by adding a dye and your item (like wool in Minetest Game, read it source code to learn how it works)
-* [https://forum.minetest.net/viewtopic.php?f=11&amp;t=6670 Color Machine] [colormachine]: Coloring support will be provided by the mod itself, as long as the authors update the mod. Your task would to to make sure that the names of the textures and nodes follow naming conventions
-* [https://forum.minetest.net/viewtopic.php?f=11&amp;t=9170 Paint Roller] [paint_roller]: Use the API of this mod to enable the paint roller to colorize your blocks
-* [https://forum.minetest.net/viewtopic.php?f=11&amp;t=14274 mypaint] [mypaint]: This mod allows to paint in arbitrary colors using paint buckets and brushes; internally it seems to work very different than the other mods
+* [[Color Machine|https://forum.minetest.net/viewtopic.php?f=11&amp;t=6670]] [colormachine]: Coloring support will be provided by the mod itself, as long as the authors update the mod. Your task would to to make sure that the names of the textures and nodes follow naming conventions
+* [[Paint Roller|https://forum.minetest.net/viewtopic.php?f=11&amp;t=9170]] [paint_roller]: Use the API of this mod to enable the paint roller to colorize your blocks
+* [[mypaint|https://forum.minetest.net/viewtopic.php?f=11&amp;t=14274]] [mypaint]: This mod allows to paint in arbitrary colors using paint buckets and brushes; internally it seems to work very different than the other mods
 
 !!!! Other 
-* [https://github.com/pyrollo/display_modpack/tree/master/font_api Font API] [font_api]: A library for displaying text on entities. Part of [https://forum.minetest.net/viewtopic.php?t=19365 Display Modpack]
+* [[Font API|https://github.com/pyrollo/display_modpack/tree/master/font_api]] [font_api]: A library for displaying text on entities. Part of [[Display Modpack|https://forum.minetest.net/viewtopic.php?t=19365]]
 
 !! Groups 
 ---
