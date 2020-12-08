@@ -177,6 +177,8 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/plugin-info--1893909122-$:/plugins/tiddlywiki/highlight---1375639774</li>
+
 <li>$:/state/plugin-info--906510658-$:/plugins/tiddlywiki/codemirror</li>
 
 <li>$:/state/plugin-info--906510658-$:/plugins/tiddlywiki/codemirror--1798174986</li>
@@ -399,6 +401,8 @@ Error message and password prompt
 
 <li>$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary</li>
 
+<li>$:/temp/search</li>
+
 <li>$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.22/index.html</li>
 
 <li>$:/theme</li>
@@ -414,8 +418,6 @@ Error message and password prompt
 <li>$:/themes/tiddlywiki/vanilla/options/stickytitles</li>
 
 <li>Contribute to Minetest!</li>
-
-<li>Draft of 'Modding Overview'</li>
 
 <li>Lua</li>
 
@@ -12636,6 +12638,9 @@ Error message and password prompt
 <div created="20201208040002739" modified="20201208040014212" title="$:/SiteTitle">
 <pre>minetest dev wiki</pre>
 </div>
+<div created="20201208075942326" modified="20201208075942327" title="$:/state/plugin-info--1893909122-$:/plugins/tiddlywiki/highlight---1375639774">
+<pre>usage</pre>
+</div>
 <div created="20201208071619515" modified="20201208071652683" title="$:/state/plugin-info--906510658-$:/plugins/tiddlywiki/codemirror">
 <pre>yes</pre>
 </div>
@@ -12651,8 +12656,8 @@ Error message and password prompt
 <div created="20201208071959803" modified="20201208071959803" title="$:/state/tab--697582678">
 <pre>$:/core/ui/ControlPanel/Settings/CodeMirror</pre>
 </div>
-<div created="20201208045028836" modified="20201208075016218" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Plugins</pre>
+<div created="20201208045028836" modified="20201208075954896" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/KeyboardShortcuts</pre>
 </div>
 <div created="20201208040117580" modified="20201208074937446" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
@@ -12660,7 +12665,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208074912259" list="[[Draft of 'Modding Overview']] $:/ControlPanel $:/plugins/tiddlywiki/codemirror-keymap-vim" modified="20201208075113419" title="$:/StoryList">
+<div created="20201208074912259" list="[[Main Page]] [[Contribute to Minetest!]] [[minetest dev wiki]] [[Modding Overview]] [[Modding Intro]]" modified="20201208081841533" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -13674,6 +13679,9 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20201208074825319" modified="20201208075107667" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre></pre>
 </div>
+<div created="20201208081258210" modified="20201208081312873" title="$:/temp/search">
+<pre></pre>
+</div>
 <div created="20201208075024061" modified="20201208075024061" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.22/index.html" url="https://tiddlywiki.com/library/v5.1.22/index.html">
 <pre>loaded</pre>
 </div>
@@ -13822,233 +13830,6 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 &lt;/noinclude&gt;
 </pre>
 </div>
-<div created="20201208063929512" draft.of="Modding Overview" draft.title="Modding Overview" modified="20201208075148140" tags="dev Lua modding [[modding API]] mietest" title="Draft of 'Modding Overview'" type="text/vnd.tiddlywiki">
-<pre>{{LuaTips}}
-
-This article is aimed at modding newcomers to help get a very broad overview over the [[Lua API|Modding Intro]] of Minetest and get started with a couple of hands-on examples. This page is not official advice, not a complete tutorial in Lua, nor a reference. It does not replace the official [[Lua API Documentation]].
-
-!! Modding Overview
----
-!!! Types of objects in Minetest
-
-There are the three types of object that can be defined in Minetest. The type of the object is important as it plays a part in the properties of that object.
-* '''Node''' (&lt;code&gt;minetest.register_node&lt;/code&gt;): A block from the world.
-* '''Tool''' (&lt;code&gt;minetest.register_tool&lt;/code&gt;): A tool/weapon that can dig and damage things according to tool_capabilities.
-* '''Craftitem''' (&lt;code&gt;minetest.register_craftitem&lt;/code&gt;): A miscellaneous item.
-
-!!! Mod packs and item names
-
-Each Node, Tool and Craftitem needs a unique name to identify it in the API.
-
-The name's format is like this: &lt;code&gt;modname:itemname&lt;/code&gt;. In this case, the mod is called &lt;code&gt;modname&lt;/code&gt; (name is preset by the folder name) and the block is called &lt;code&gt;itemname&lt;/code&gt;. In this tutorial, we will make the node &lt;code&gt;tutorial:decowood&lt;/code&gt;.
-
-For example, &lt;code&gt;default:dirt&lt;/code&gt; is the unique name for dirt.
-
-!! Mod folder structure
----
-The following describes the folder structure of a mod. The only required file is &lt;code&gt;init.lua&lt;/code&gt;
-
-```
-    mods
-    ├── modname
-    │   ├── mod.conf
-    │   ├── screenshot.png
-    │   ├── settingtypes.txt
-    │   ├── init.lua
-    │   ├── models
-    │   ├── textures
-    │   │   ├── modname_stuff.png
-    │   │   └── modname_something_else.png
-    │   ├── sounds
-    │   ├── media
-    │   ├── locale
-    │   ├── readme.md
-    │   ├── depends.txt (deprecated)
-    │   ├── description.txt (deprecated)
-    │   └── &lt;custom data&gt;
-    └── another
-```
-
-* &lt;code&gt;mods&lt;/code&gt; — Path to Minetest's mods.
-* &lt;code&gt;modname&lt;/code&gt; — The name of your mod.
-* &lt;code&gt;mod.conf&lt;/code&gt; — A key-value store of mod details:
-:&lt;code&gt;name&lt;/code&gt;: The mod name. Allows Minetest to determine the mod name even if the folder is wrongly named.
-:&lt;code&gt;description&lt;/code&gt;: A description of your mod to be shown in the Mods tab of the main menu (also used by mod managers). The first sentence should be less than 100 characters. It should be enough to describe the mod. Further information can be put into other sentences.
-:&lt;code&gt;depends&lt;/code&gt;: A comma separated list of dependencies. These are mods that must be loaded before this mod.
-:&lt;code&gt;optional_depends&lt;/code&gt;: A comma separated list of optional dependencies. Like a dependency, but no error if the mod doesn't exist.
-* &lt;code&gt;screenshot.png&lt;/code&gt; — Screenshot of your mod (used by mod managers). It should be 3:2 with a minimum size of 300x200px.
-* &lt;code&gt;settingtypes.txt&lt;/code&gt; — Mods settings displayed in the settings menu.
-* &lt;code&gt;init.lua&lt;/code&gt; — Main Lua script.&lt;br&gt;The main Lua script. Running this script should register everything it wants to register. Subsequent execution depends on Minetest calling the registered callbacks.
-* &lt;code&gt;models&lt;/code&gt; — Models for entities or meshnodes.
-* &lt;code&gt;textures&lt;/code&gt;, &lt;code&gt;sounds&lt;/code&gt;, &lt;code&gt;media&lt;/code&gt; — Media files (textures, sounds, whatever).&lt;br&gt;These will be transferred to the client and will be available for use by the mod.
-* &lt;code&gt;locale&lt;/code&gt; — [[Translation]] files for the clients.
-* &lt;code&gt;readme.md&lt;/code&gt; — Not actually used by Minetest, but good practice. Markdown page describing and explaining your mod (for example if you are using [[GitHub]]).
-* &lt;code&gt;depends.txt&lt;/code&gt; — '''Deprecated:''' you should use &lt;code&gt;mod.conf&lt;/code&gt; instead. This file is used if there are no dependencies in mod.conf. A single line contains a single modname. Optional dependencies can be defined by appending a question mark to a single modname.
-* &lt;code&gt;description.txt&lt;/code&gt; — '''Deprecated:''' you should use &lt;code&gt;mod.conf&lt;/code&gt; instead. This file is used if there is no description in mod.conf.
-
-See [https://github.com/minetest/minetest/blob/master/doc/lua_api.txt &lt;code&gt;lua_api.txt&lt;/code&gt;] for up to date information about mod files.
-
-!! Define a node 
----
-We are going to make a mod that adds a special kind of wood that can only be used for decoration.
-
-First, create a folder called &lt;code&gt;tutorial&lt;/code&gt; in the Minetest mods folder (see [https://wiki.minetest.net/Installing_Mods Installing Mods] on the Minetest Wiki).
-
-Next, create a file called &lt;code&gt;init.lua&lt;/code&gt; and paste in the following:
-
-```
-minetest.register_node(&quot;tutorial:decowood&quot;, {
-	tiles = {&quot;tutorial_decowood.png&quot;},
-	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-})
-```
-
-You can add your own PNG file &lt;code&gt;tutorial_decowood.png&lt;/code&gt; or download an example file here: [[:File:tutorial_decowood.png]]
-
-The function &lt;source enclose=&quot;none&quot;&gt;minetest.register_node(name, table)&lt;/source&gt; is responsible for adding new blocks to the game. Nodes are blocks as well as torches, signs, etc.
-
-It takes 2 Parameters: The name of the new block &lt;code&gt;tutorial:decowood&lt;/code&gt;, and a table containing the properties of the block.
-
-The name of the block MUST start with the mod name, followed by a colon, eg. &lt;code&gt;tutorial:&lt;/code&gt;.
-
-In this example we define the following properties:
-* &lt;code&gt;tiles&lt;/code&gt; — Sets the texture of the block; You can use only 1 texture or multiple textures, separated by commas &lt;code&gt;{&quot;tex1.png&quot;, &quot;tex2.png&quot;, …}&lt;/code&gt;. The game checks for the texture files in ALL textures folders of the game.
-* &lt;code&gt;groups&lt;/code&gt; — This sets attributes about the block including the time it takes to destroy the block, and the tool required. It also defines that the node will burn when is close to fire or lava.
-
-!! Try it out
----
-Launch the game now, and notice that the mods are automatically loaded and compiled.
-
-This means when changing the code you simply have to &quot;Exit to Menu&quot; and &quot;Start Game/Connect&quot; again to try out the changes.
-
-Let's try out our first mod! Open the chat window in-game (press t) and type &lt;code&gt;/giveme tutorial:decowood 99&lt;/code&gt;. This will add 99 blocks of the decorative wood to your inventory!
-
-:{{Template:Note|The &quot;give&quot; privilege is required for the &lt;code&gt;/give&lt;/code&gt; and &lt;code&gt;/giveme&lt;/code&gt; commands to work. In singleplayer you have this privilege by default. On servers a server admin has to execute &lt;code&gt;/grant player_name give&lt;/code&gt;}}
-
-!! Define a crafting recipe
----
-Minetest also uses different crafting recipes. Therefore it is important to know what crafting means and how to code it.
-
-Crafting means to create tools, blocks and other stuff. Minetest offers a 3 × 3 crafting grid by default with one output slot.
-
-A stone pickaxe can be made out of 2 sticks and 3 cobblestone:
-&lt;pre&gt;
-C C C     &lt;--- S = stick, C = stone group (cobblestone, stone, desert stone, …)
-  S
-  S
-&lt;/pre&gt;
-
-Let's make a crafting recipe for the decorative wood.
-
-Just add this to your &lt;code&gt;init.lua&lt;/code&gt; file:
-
-```
-minetest.register_craft({
-	output = 'tutorial:decowood 2',
-	recipe = {
-		{'default:wood', 'default:wood', ''},
-		{'default:wood', 'default:wood', ''},
-		{'', '', ''},
-	}
-})
-```
-
-The function &lt;source enclose=&quot;none&quot;&gt;minetest.register_craft()&lt;/source&gt; registers a crafting process, it defines the recipe for something.
-
-It takes 1 parameter which is a table that contains 2 properties: (and an optional third)
-* &lt;code&gt;output&lt;/code&gt; — which sets the outcome of the crafting process and recipe which is the actual recipe for the output.
-* &lt;code&gt;recipe&lt;/code&gt; — must be a table with other tables inside. Every of the 3 tables defines another row of the crafting field. Every row contains 3 columns.
-* &lt;code&gt;type&lt;/code&gt; — if you want to make it a furnace craft add &lt;code&gt;type=&quot;cook&quot;&lt;/code&gt;
-
-Let's define a cooking recipe to see how that works. This will allow the node to be placed in the top of a furnace which will convert it to another item. Fuel must be added to the bottom of the furnace for the craft to take effect.
-
-```
-minetest.register_craft({
-	type = &quot;cooking&quot;,
-	recipe = &quot;tutorial:decowood&quot;,
-	output = &quot;default:wood&quot;,
-})
-```
-
-Let's also define a fuel recipe. This will allow the node to be placed in the furnace to fuel cooking recipes.
-
-```
-minetest.register_craft({
-	type = &quot;fuel&quot;,
-	recipe = &quot;tutorial:decowood&quot;,
-	burntime = 7,
-})
-```
-
-You can use the [https://forum.minetest.net/viewtopic.php?f=9&amp;t=5831 craft recipe checker] when modding to check for typos.
-
-:Why are wooden planks not simply called &lt;code&gt;wood&lt;/code&gt; but &lt;code&gt;default:wood&lt;/code&gt;?
-:Indeed, The name of a node/tool/craftitem object '''must''' be &lt;code&gt;modname:name&lt;/code&gt; (with two exceptions: &lt;code&gt;air&lt;/code&gt; and &lt;code&gt;ignore&lt;/code&gt; which are built-in). In this case, the mod is called &lt;code&gt;tutorial&lt;/code&gt; (name is preset by the folder name) and the block is called &lt;code&gt;decowood&lt;/code&gt;, so it's &lt;code&gt;tutorial:decowood&lt;/code&gt;.
-:The &lt;code&gt;default&lt;/code&gt; mod is the most important “mod” in Minetest, in fact Minetest itself is more like just a game engine, all the contents, materials, and other stuff are in several mods, like &lt;code&gt;default&lt;/code&gt; (standard tools/blocks), &lt;code&gt;bucket&lt;/code&gt; (Buckets: Lava/Water), and many more.
-:If you want to find out more about these mods and maybe use features they contain, just have a look in their init.lua! 
-:Windows: &lt;code&gt;Minetest/games/minetest_game/&lt;/code&gt;
-:GNU/Linux, run-in-place: &lt;code&gt;~/.minetest/games/minetest_game/&lt;/code&gt;
-:GNU/Linux, non-run-in-place (such as a package): &lt;code&gt;/usr/share/minetest/games/minetest_game&lt;/code&gt;
-
-!! Define an ABM 
----
-ABMs add actions to blocks. For instance, the tutorial-wood could become normal wood after a few seconds.
-
-Append this code to your &lt;code&gt;init.lua&lt;/code&gt;:
-
-```
-minetest.register_abm({
-	nodenames = {&quot;tutorial:decowood&quot;},
-	interval = 30,
-	chance = 1,
-	action = function(pos)
-		minetest.add_node(pos, {name=&quot;default:wood&quot;})
-	end,
-})
-```
-
-Try it out! It's really annoying to see all your decowood creations destroyed after 30 seconds, they simply become normal wood.
-
-''But how does this work?'' The function &lt;source enclose=&quot;none&quot;&gt;minetest.register_abm()&lt;/source&gt; registers an action for each block of the same type.
-* &lt;code&gt;nodenames = {&quot;tutorial:decowood'}&lt;/code&gt; means that the action is processed for each decowood block. You could also try &lt;code&gt;&quot;default:stone&quot;&lt;/code&gt; instead of that to turn all stone blocks into wood.
-* &lt;code&gt;interval&lt;/code&gt; = 30 means that the action is performed every 30 seconds. It starts counting at the beginning of the game. After 30 seconds all actions are processed, it doesn't matter when the block was placed. - This is not a per-block timer!
-* &lt;code&gt;chance&lt;/code&gt; = 1 means that the probability of the action is 1:1, it happens in every case. A higher value means that it's less probable (eg. 1:2, 1:3, …).
-* &lt;code&gt;action = function(pos)&lt;/code&gt; is the function that is actually performed.
-
-It contains the command &lt;source enclose=&quot;none&quot;&gt;minetest.add_node()&lt;/source&gt;. This takes two parameters:
-
-First of all the position parameter (more information later) and also a table which defines the properties of the block, e.g. the name, the direction it faces. In this case the name is enough to define what block you can see.
-
-So let's assume we want to create a mod that makes junglegrass grow above every dirt-with-grass block. This should be a slow process, one dirt-with-grass block after the other should be grown over. This is what we do:
-
-```
-minetest.register_abm({
-	nodenames = {&quot;default:dirt_with_grass&quot;},
-	interval = 2,
-	chance = 100,
-	action = function(pos)
-		pos.y = pos.y + 1
-		minetest.add_node(pos, {name=&quot;default:junglegrass&quot;})
-	end,
-})
-```
-
-You should already know everything else but the line &lt;code&gt;pos.y=pos.y+1&lt;/code&gt;. What is that for?
-
-To understand it, you should know what a position variable in Minetest is a table made up out of 3 values: &lt;code&gt;x&lt;/code&gt;, &lt;code&gt;y&lt;/code&gt; and &lt;code&gt;z&lt;/code&gt;.
-
-&lt;code&gt;x&lt;/code&gt; and &lt;code&gt;z&lt;/code&gt; are forward/backward; left/right values. &lt;code&gt;y&lt;/code&gt; is the up/down value. The player usually spawns near &lt;code&gt;0,0,0&lt;/code&gt;.
-
-The line &lt;code&gt;pos.y = pos.y + 1&lt;/code&gt; manipulates the position to 1 block above the dirt-with-grass node.
-
-There are some small other differences to our first abm. The interval is 1 in this case, but the chance (probability) is 100. Therefore the function is executed every second, but only in 1 of 100 cases. This makes your Minetest garden slowly been overgrown by junglegrass.
-
-!! How to continue
-That's it! You should now have a basic understanding on how the Lua API roughly works. Please note this article is not a complete tutorial. Read [[Modding Intro]] for a list of more useful links.
-
-[[Category:Modding API]]
-</pre>
-</div>
 <div created="20201208045521637" modified="20201208062544720" tags="modding mietest dev Lua" title="Lua" type="text/vnd.tiddlywiki">
 <pre>{{Languages}}
 
@@ -14123,7 +13904,7 @@ A very basic overview is written in [[Modding Overview]].
 
 [[Category:Modding API]]</pre>
 </div>
-<div created="20201208063929512" modified="20201208074208695" tags="dev Lua modding [[modding API]] mietest" title="Modding Overview" type="text/vnd.tiddlywiki">
+<div created="20201208063929512" modified="20201208081811624" tags="dev Lua modding [[modding API]] mietest" title="Modding Overview" type="text/vnd.tiddlywiki">
 <pre>{{LuaTips}}
 
 This article is aimed at modding newcomers to help get a very broad overview over the [[Lua API|Modding Intro]] of Minetest and get started with a couple of hands-on examples. This page is not official advice, not a complete tutorial in Lua, nor a reference. It does not replace the official [[Lua API Documentation]].
@@ -14133,9 +13914,10 @@ This article is aimed at modding newcomers to help get a very broad overview ove
 !!! Types of objects in Minetest
 
 There are the three types of object that can be defined in Minetest. The type of the object is important as it plays a part in the properties of that object.
-* '''Node''' (&lt;code&gt;minetest.register_node&lt;/code&gt;): A block from the world.
-* '''Tool''' (&lt;code&gt;minetest.register_tool&lt;/code&gt;): A tool/weapon that can dig and damage things according to tool_capabilities.
-* '''Craftitem''' (&lt;code&gt;minetest.register_craftitem&lt;/code&gt;): A miscellaneous item.
+
+* ''Node'' (&lt;code&gt;minetest.register_node&lt;/code&gt;): A block from the world.
+* ''Tool'' (&lt;code&gt;minetest.register_tool&lt;/code&gt;): A tool/weapon that can dig and damage things according to tool_capabilities.
+* ''Craftitem'' (&lt;code&gt;minetest.register_craftitem&lt;/code&gt;): A miscellaneous item.
 
 !!! Mod packs and item names
 
@@ -14184,8 +13966,8 @@ The following describes the folder structure of a mod. The only required file is
 * &lt;code&gt;textures&lt;/code&gt;, &lt;code&gt;sounds&lt;/code&gt;, &lt;code&gt;media&lt;/code&gt; — Media files (textures, sounds, whatever).&lt;br&gt;These will be transferred to the client and will be available for use by the mod.
 * &lt;code&gt;locale&lt;/code&gt; — [[Translation]] files for the clients.
 * &lt;code&gt;readme.md&lt;/code&gt; — Not actually used by Minetest, but good practice. Markdown page describing and explaining your mod (for example if you are using [[GitHub]]).
-* &lt;code&gt;depends.txt&lt;/code&gt; — '''Deprecated:''' you should use &lt;code&gt;mod.conf&lt;/code&gt; instead. This file is used if there are no dependencies in mod.conf. A single line contains a single modname. Optional dependencies can be defined by appending a question mark to a single modname.
-* &lt;code&gt;description.txt&lt;/code&gt; — '''Deprecated:''' you should use &lt;code&gt;mod.conf&lt;/code&gt; instead. This file is used if there is no description in mod.conf.
+* &lt;code&gt;depends.txt&lt;/code&gt; — ''Deprecated:'' you should use &lt;code&gt;mod.conf&lt;/code&gt; instead. This file is used if there are no dependencies in mod.conf. A single line contains a single modname. Optional dependencies can be defined by appending a question mark to a single modname.
+* &lt;code&gt;description.txt&lt;/code&gt; — ''Deprecated:'' you should use &lt;code&gt;mod.conf&lt;/code&gt; instead. This file is used if there is no description in mod.conf.
 
 See [https://github.com/minetest/minetest/blob/master/doc/lua_api.txt &lt;code&gt;lua_api.txt&lt;/code&gt;] for up to date information about mod files.
 
@@ -14257,6 +14039,7 @@ minetest.register_craft({
 The function &lt;source enclose=&quot;none&quot;&gt;minetest.register_craft()&lt;/source&gt; registers a crafting process, it defines the recipe for something.
 
 It takes 1 parameter which is a table that contains 2 properties: (and an optional third)
+
 * &lt;code&gt;output&lt;/code&gt; — which sets the outcome of the crafting process and recipe which is the actual recipe for the output.
 * &lt;code&gt;recipe&lt;/code&gt; — must be a table with other tables inside. Every of the 3 tables defines another row of the crafting field. Every row contains 3 columns.
 * &lt;code&gt;type&lt;/code&gt; — if you want to make it a furnace craft add &lt;code&gt;type=&quot;cook&quot;&lt;/code&gt;
@@ -14281,10 +14064,10 @@ minetest.register_craft({
 })
 ```
 
-You can use the [https://forum.minetest.net/viewtopic.php?f=9&amp;t=5831 craft recipe checker] when modding to check for typos.
+You can use the [[craft recipe checker|https://forum.minetest.net/viewtopic.php?f=9&amp;t=5831]] when modding to check for typos.
 
 :Why are wooden planks not simply called &lt;code&gt;wood&lt;/code&gt; but &lt;code&gt;default:wood&lt;/code&gt;?
-:Indeed, The name of a node/tool/craftitem object '''must''' be &lt;code&gt;modname:name&lt;/code&gt; (with two exceptions: &lt;code&gt;air&lt;/code&gt; and &lt;code&gt;ignore&lt;/code&gt; which are built-in). In this case, the mod is called &lt;code&gt;tutorial&lt;/code&gt; (name is preset by the folder name) and the block is called &lt;code&gt;decowood&lt;/code&gt;, so it's &lt;code&gt;tutorial:decowood&lt;/code&gt;.
+:Indeed, The name of a node/tool/craftitem object ''must'' be &lt;code&gt;modname:name&lt;/code&gt; (with two exceptions: &lt;code&gt;air&lt;/code&gt; and &lt;code&gt;ignore&lt;/code&gt; which are built-in). In this case, the mod is called &lt;code&gt;tutorial&lt;/code&gt; (name is preset by the folder name) and the block is called &lt;code&gt;decowood&lt;/code&gt;, so it's &lt;code&gt;tutorial:decowood&lt;/code&gt;.
 :The &lt;code&gt;default&lt;/code&gt; mod is the most important “mod” in Minetest, in fact Minetest itself is more like just a game engine, all the contents, materials, and other stuff are in several mods, like &lt;code&gt;default&lt;/code&gt; (standard tools/blocks), &lt;code&gt;bucket&lt;/code&gt; (Buckets: Lava/Water), and many more.
 :If you want to find out more about these mods and maybe use features they contain, just have a look in their init.lua! 
 :Windows: &lt;code&gt;Minetest/games/minetest_game/&lt;/code&gt;
@@ -14311,6 +14094,7 @@ minetest.register_abm({
 Try it out! It's really annoying to see all your decowood creations destroyed after 30 seconds, they simply become normal wood.
 
 ''But how does this work?'' The function &lt;source enclose=&quot;none&quot;&gt;minetest.register_abm()&lt;/source&gt; registers an action for each block of the same type.
+
 * &lt;code&gt;nodenames = {&quot;tutorial:decowood'}&lt;/code&gt; means that the action is processed for each decowood block. You could also try &lt;code&gt;&quot;default:stone&quot;&lt;/code&gt; instead of that to turn all stone blocks into wood.
 * &lt;code&gt;interval&lt;/code&gt; = 30 means that the action is performed every 30 seconds. It starts counting at the beginning of the game. After 30 seconds all actions are processed, it doesn't matter when the block was placed. - This is not a per-block timer!
 * &lt;code&gt;chance&lt;/code&gt; = 1 means that the probability of the action is 1:1, it happens in every case. A higher value means that it's less probable (eg. 1:2, 1:3, …).
