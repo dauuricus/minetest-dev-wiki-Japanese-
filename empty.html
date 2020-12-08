@@ -177,11 +177,15 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/plugin-info--1537405794-$:/plugins/tiddlywiki/codemirror-keymap-vim---407697173</li>
+
 <li>$:/state/plugin-info--1893909122-$:/plugins/tiddlywiki/highlight---1375639774</li>
 
 <li>$:/state/plugin-info--906510658-$:/plugins/tiddlywiki/codemirror</li>
 
 <li>$:/state/plugin-info--906510658-$:/plugins/tiddlywiki/codemirror--1798174986</li>
+
+<li>$:/state/sidebar</li>
 
 <li>$:/state/tab--1963855381</li>
 
@@ -190,6 +194,8 @@ Error message and password prompt
 <li>$:/state/tab--697582678</li>
 
 <li>$:/state/tab-1749438307</li>
+
+<li>$:/state/tab/moresidebar-1850697562</li>
 
 <li>$:/state/tab/sidebar--595412856</li>
 
@@ -424,6 +430,8 @@ Error message and password prompt
 <li>Main Page</li>
 
 <li>minetest dev wiki</li>
+
+<li>Modding FAQ</li>
 
 <li>Modding Intro</li>
 
@@ -12638,14 +12646,20 @@ Error message and password prompt
 <div created="20201208040002739" modified="20201208040014212" title="$:/SiteTitle">
 <pre>minetest dev wiki</pre>
 </div>
+<div created="20201208090558252" modified="20201208090600742" title="$:/state/plugin-info--1537405794-$:/plugins/tiddlywiki/codemirror-keymap-vim---407697173">
+<pre>contents</pre>
+</div>
 <div created="20201208075942326" modified="20201208075942327" title="$:/state/plugin-info--1893909122-$:/plugins/tiddlywiki/highlight---1375639774">
 <pre>usage</pre>
 </div>
 <div created="20201208071619515" modified="20201208071652683" title="$:/state/plugin-info--906510658-$:/plugins/tiddlywiki/codemirror">
 <pre>yes</pre>
 </div>
-<div created="20201208071534353" modified="20201208073541046" title="$:/state/plugin-info--906510658-$:/plugins/tiddlywiki/codemirror--1798174986">
-<pre>contents</pre>
+<div created="20201208071534353" modified="20201208095337958" title="$:/state/plugin-info--906510658-$:/plugins/tiddlywiki/codemirror--1798174986">
+<pre>usage</pre>
+</div>
+<div created="20201208084806998" modified="20201208095320657" title="$:/state/sidebar">
+<pre>yes</pre>
 </div>
 <div created="20201208045133702" modified="20201208063603829" title="$:/state/tab--1963855381">
 <pre>$:/core/ui/ControlPanel/Theme</pre>
@@ -12656,16 +12670,19 @@ Error message and password prompt
 <div created="20201208071959803" modified="20201208071959803" title="$:/state/tab--697582678">
 <pre>$:/core/ui/ControlPanel/Settings/CodeMirror</pre>
 </div>
-<div created="20201208045028836" modified="20201208075954896" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/KeyboardShortcuts</pre>
+<div created="20201208045028836" modified="20201208095331036" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Plugins</pre>
 </div>
-<div created="20201208040117580" modified="20201208074937446" title="$:/state/tab/sidebar--595412856">
+<div created="20201208090520032" modified="20201208090520032" title="$:/state/tab/moresidebar-1850697562">
+<pre>$:/core/ui/MoreSideBar/Plugins</pre>
+</div>
+<div created="20201208040117580" modified="20201208095713772" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208074912259" list="[[Main Page]] [[Contribute to Minetest!]] [[minetest dev wiki]] [[Modding Overview]] [[Modding Intro]]" modified="20201208081841533" title="$:/StoryList">
+<div created="20201208074912259" list="[[Modding FAQ]] [[minetest dev wiki]]" modified="20201208095717944" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -13814,7 +13831,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20201208045201177" modified="20201208045218647" title="$:/themes/tiddlywiki/vanilla/options/stickytitles">
 <pre>no</pre>
 </div>
-<div created="20201208041504984" modified="20201208043055501" tags="mietest" title="Contribute to Minetest!" type="text/vnd.tiddlywiki">
+<div created="20201208041504984" modified="20201208084241702" tags="mietest" title="Contribute to Minetest!" type="text/vnd.tiddlywiki">
 <pre>== Contribute to Minetest! ==
 
 {|class=&quot;wikitable&quot; style=&quot;width: 100%;&quot;
@@ -13851,12 +13868,12 @@ LuaJIT が使用される場合、ソースの[[ Lua フォルダ|https://github
 [[Category:Lua]]
 </pre>
 </div>
-<div created="20201208040515596" modified="20201208063546150" tags="mietest modding dev" title="Main Page" type="text/vnd.tiddlywiki">
+<div created="20201208040515596" modified="20201208090638899" tags="mietest modding dev" title="Main Page" type="text/vnd.tiddlywiki">
 <pre>{{Languages}}
 
-Welcome to the '''Minetest Developer Wiki''', here you learn how Minetest and games and mods for Minetest are developed.
+Welcome to the ''Minetest Developer Wiki'', here you learn how Minetest and games and mods for Minetest are developed.
 
-'''Minetest''' is a [[game engine|https://en.wikipedia.org/wiki/Game_engine]] inspired by Minecraft, Infiniminer and others. It's licensed under the GNU LGPL 2.1, with artwork generally covered by CC BY-SA 3.0. There are two major parts to the system, the first being a [[Engine structure|core engine]] written in [[C++]], the second being a modding API that exposes useful functions to a [[Lua]] environment.
+''Minetest'' is a [[game engine|https://en.wikipedia.org/wiki/Game_engine]] inspired by Minecraft, Infiniminer and others. It's licensed under the GNU LGPL 2.1, with artwork generally covered by CC BY-SA 3.0. There are two major parts to the system, the first being a [[Engine structure|core engine]] written in [[C++]], the second being a modding API that exposes useful functions to a [[Lua]] environment.
 
 The Minetest Wiki for players is located at [[wiki.minetest.net|https://wiki.minetest.net/]].
 
@@ -13867,8 +13884,103 @@ The Minetest Wiki for players is located at [[wiki.minetest.net|https://wiki.min
 [[Category:Root-Category]]
 </pre>
 </div>
-<div created="20201208040141179" modified="20201208040236615" tags="mietest" title="minetest dev wiki" type="text/vnd.tiddlywiki">
+<div created="20201208040141179" modified="20201208095316041" tags="mietest" title="minetest dev wiki" type="text/vnd.tiddlywiki">
 <pre>index</pre>
+</div>
+<div created="20201208091517249" modified="20201208100042171" tags="dev Lua mietest modding [[modding API]]" title="Modding FAQ">
+<pre>{{Languages}}
+
+This page includes frequently asked questions about mod and game development for Minetest. For general advice, see also [[Modding Tips]].
+
+! Terminology 
+!! What is a mod? 
+---
+
+Mods (short for modifications) are user-created modifications to the game in such a way that alters gameplay. Some larger mods may add a lot of content to the game, while other smaller mods may add more settings/customization options, or optimize the speed, gameplay or graphics of Minetest. Server mods or plugins mainly give server admins more options and ease of use, and all mods for single-player can also be used in multiplayer.
+
+''[[Read More|http://wiki.minetest.net/Mods]]''
+
+!! What is a formspec? 
+---
+A formspec is a specification for a form, written in string form. You can use formspecs to define all the forms in your mod. See [[formspec]] for more.
+
+!! What are listrings? 
+---
+Listrings are a convenience feature in Minetest to allow quick transfer of an itemstack from one inventory list to another with &lt;kbd&gt;Shift&lt;/kbd&gt;+&lt;kbd&gt;Click&lt;/kbd&gt;. Basically, listrings group several inventory lists together in a “ring” data structure. A shift-click will transfer an itemstack from one inventory list to the next inventory list in the listrings, and, if it is the final inventory list in the listring, it will be sent to the first inventory list.
+
+Listrings are documented in lua_api.txt.
+
+! Basic modding
+!! How do I install a mod? 
+---
+
+See [[Mods|https://wiki.minetest.net/Installing_Mods Installing]] on the Minetest Wiki.
+
+!! Where do I find tutorials and documentation about modding? 
+---
+(related [[:Category:Modding API‏‎]])&lt;br /&gt;
+Start on the [[Main Page]] here at the Minetest Developer Wiki. It isn't just about changing the Minetest (C++) core program. There are articles and references about modding you can find right from the main page. Look for the &quot;Develop a mod&quot; and &quot;Modding API&quot; headings. The Developer Wiki is very much a community project, so don't forget to come back and help document what you find!
+
+!!! Lua basics 
+
+* [[Programming in Lua|http://www.lua.org/pil/contents.html]], learn the Lua langauge (for Lua 5.0)
+* [[Lua 5.1 reference|http://www.lua.org/manual/5.1/]] (note that Minetest uses Lua 5.1)
+
+!!! Minetest modding 
+
+* [[Intro|Introduction]] to the modding API on the wiki.
+* [[Minetest Modding Book|http://rubenwardy.com/minetest_modding_book/]] an online clear and easy guide in learning to make mods.
+* [[lua_api.txt|https://github.com/minetest/minetest/blob/master/doc/lua_api.txt]] in minetest/docs/ contains an API Listing ([[HTML Version|http://rubenwardy.com/minetest_modding_book/lua_api.html]]). Those links are to the latest development version, look in your docs/ folder for one specific to your Minetest version.
+* Search the forum by web search (eg: googling) like this: &quot;some search terms site:forum.minetest.net&quot;.
+* Ask the community for help in the [[Modding General|https://forum.minetest.net/viewforum.php?f=9]] section of the forum.
+
+!! How do I debug my mod? 
+---
+
+The &quot;lua&quot; interpreter is not very useful for debugging mod code, because mods are built to run in an environment specific to Minetest (they expect to be loaded after their dependencies, have access to the Minetest API, etc.).  However, you may be able to break pieces of your logic into separate, stand-alone Lua library files that are not specific to Minetest.  Where you have an opportunity to do this, testing outside of Minetest (using Lua 5.1's &quot;lua&quot; interpreter or LuaJIT's &quot;luajit&quot; interpreter) can be helpful.  This might work for some utility functions and &quot;class libraries&quot;.
+
+There is no debugger built into Minetest itself, but there are a few functions that can help (see [[:Category:Debugging]]).  Using these functions is generally equivalent to using &quot;printf style debugging&quot;, meaning you'll have to modify your mod code and restart the server when you want to deduce what is going on, or carefully plan for debug logging in your code and provide some kind of debug level or flags.  There is also a [[LuaCmd|http://wiki.minetest.net/LuaCmd]] mod that allows players having adequate permissions to execute Lua statements from Minetest's chat console, but using it to examine the state of your mod is limited to your public API (in other words, functions and variables you have put in a global table named after your mod, rather than &lt;code&gt;local&lt;/code&gt; variables defined in your mod files).
+
+!! Specific questions regarding node definitions
+---
+&lt;br /&gt;
+
+!!! How do I add a new node? 
+See [[minetest.register_node|http://dev.minetest.net/minetest.register_node]].
+&lt;br /&gt;
+
+!!! How can I make my new nodes transparent in certain sections? 
+&lt;br /&gt;
+
+To make a node have transparent patches, you need to do two things:  Have your image texture be transparent where you need it to be, and second, you need to specify the node's &lt;code&gt;drawtype&lt;/code&gt; to be one of the following: &quot;glasslike&quot;, &quot;glasslike_framed&quot;, &quot;allfaces&quot;, or &quot;allfaces_optional&quot;.&lt;br /&gt;
+&lt;br /&gt;
+
+!!! What if I only want it partially transparent, such as with tinted glass? 
+&lt;br /&gt;
+To do this, add &lt;code&gt;use_texture_alpha = true&lt;/code&gt; to the node definition while following the directions above.&lt;br /&gt;
+
+!! How do I generate a custom map? 
+---
+First, there are a bunch of [[Mapgen Parameters|mapgen parameters]] you can change for the built-in mapgens, so you might be able to get what you want without touching Lua at all.  You may also be able to find an existing mod that does what you want, so check the [[ mod list|http://wiki.minetest.net/Mod_list]] on the main Minetest Wiki and the [[Mod Releases|https://forum.minetest.net/viewforum.php?f=11] section of the forums (the community has already written several mods for various map generation, importing real-world data, editing sections of existing worlds, etc.).  Finally, the Lua modding API has recently been enhanced to make custom mapgens more feasible to write without modifying the core Minetest engine.  It's not for the faint of heart but if you want to dive in, start by reading up on:
+
+* [[:Category:Mapgen]]
+* [[VoxelManip]]: the voxel manipulator, for fast modification of large chunks of nodes.
+* [[minetest.register_on_generated]]: for handling freshly-minted, previously unexplored sections of the map.
+* [[minetest.spawn_tree]].  L-system generation for trees and other interesting constructs.
+* [[minetest.create_schematic]] and [[minetest.place_schematic]]: schematics/templates for cookie-cutter placement of pre-planned sections that can include minor variation.
+This is a pretty advanced task to do in a mod, so expect to also have to do some digging and research in the lua_api.txt document.
+
+! Advanced modding
+!! How do I properly balance the biomes? 
+---
+As decribed in &lt;code&gt;lua_api.txt&lt;/code&gt;, biomes are defined by heat and humidity points in a Voronoi diagram, with heat and humidity usually ranging from 0 and 100, but in extreme cases they can even reach -25 and 125.
+
+Paramat shows how it works for Minetest Game here: [https://forum.minetest.net/viewtopic.php?f=47&amp;t=15272&amp;start=250#p257528]
+
+[[GeoGebra|https://www.geogebra.org/]] is a software tool which can be used to graphically align the Voronoi cells, making balancing a lot easier. Paramat explained it here: [https://forum.minetest.net/viewtopic.php?p=230857#p230857]
+
+[[Category:Mods]] [[Category:Modding API]]
+</pre>
 </div>
 <div created="20201208043220342" modified="20201208064838196" tags="mietest modding dev [[modding API]]" title="Modding Intro" type="text/vnd.tiddlywiki">
 <pre>{{Languages}}
@@ -13904,7 +14016,7 @@ A very basic overview is written in [[Modding Overview]].
 
 [[Category:Modding API]]</pre>
 </div>
-<div created="20201208063929512" modified="20201208081811624" tags="dev Lua modding [[modding API]] mietest" title="Modding Overview" type="text/vnd.tiddlywiki">
+<div created="20201208063929512" modified="20201208091353095" tags="dev Lua modding [[modding API]] mietest" title="Modding Overview" type="text/vnd.tiddlywiki">
 <pre>{{LuaTips}}
 
 This article is aimed at modding newcomers to help get a very broad overview over the [[Lua API|Modding Intro]] of Minetest and get started with a couple of hands-on examples. This page is not official advice, not a complete tutorial in Lua, nor a reference. It does not replace the official [[Lua API Documentation]].
@@ -13979,7 +14091,7 @@ First, create a folder called &lt;code&gt;tutorial&lt;/code&gt; in the Minetest 
 
 Next, create a file called &lt;code&gt;init.lua&lt;/code&gt; and paste in the following:
 
-```
+```Lua
 minetest.register_node(&quot;tutorial:decowood&quot;, {
 	tiles = {&quot;tutorial_decowood.png&quot;},
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
@@ -14025,7 +14137,7 @@ Let's make a crafting recipe for the decorative wood.
 
 Just add this to your &lt;code&gt;init.lua&lt;/code&gt; file:
 
-```
+```Lua
 minetest.register_craft({
 	output = 'tutorial:decowood 2',
 	recipe = {
@@ -14046,7 +14158,7 @@ It takes 1 parameter which is a table that contains 2 properties: (and an option
 
 Let's define a cooking recipe to see how that works. This will allow the node to be placed in the top of a furnace which will convert it to another item. Fuel must be added to the bottom of the furnace for the craft to take effect.
 
-```
+```Lua
 minetest.register_craft({
 	type = &quot;cooking&quot;,
 	recipe = &quot;tutorial:decowood&quot;,
@@ -14056,7 +14168,7 @@ minetest.register_craft({
 
 Let's also define a fuel recipe. This will allow the node to be placed in the furnace to fuel cooking recipes.
 
-```
+```lua
 minetest.register_craft({
 	type = &quot;fuel&quot;,
 	recipe = &quot;tutorial:decowood&quot;,
@@ -14080,7 +14192,7 @@ ABMs add actions to blocks. For instance, the tutorial-wood could become normal 
 
 Append this code to your &lt;code&gt;init.lua&lt;/code&gt;:
 
-```
+```Lua
 minetest.register_abm({
 	nodenames = {&quot;tutorial:decowood&quot;},
 	interval = 30,
@@ -14106,7 +14218,7 @@ First of all the position parameter (more information later) and also a table wh
 
 So let's assume we want to create a mod that makes junglegrass grow above every dirt-with-grass block. This should be a slow process, one dirt-with-grass block after the other should be grown over. This is what we do:
 
-```
+```Lua
 minetest.register_abm({
 	nodenames = {&quot;default:dirt_with_grass&quot;},
 	interval = 2,
