@@ -13069,7 +13069,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208163525327" list="[[Player physics]] [[MineClone 2]]" modified="20201208165338049" title="$:/StoryList">
+<div created="20201208165626953" list="[[Mapgen memory optimisations]] [[Mod interoperability]] [[Player physics]] [[MineClone 2]]" modified="20201208171232955" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14305,12 +14305,12 @@ The Minetest Wiki for players is located at [[wiki.minetest.net|https://wiki.min
 [[Category:Root-Category]]
 </pre>
 </div>
-<div created="20201208122330407" modified="20201208123243356" tags="dev modding [[modding API]] mietest" title="Mapgen memory optimisations">
+<div created="20201208122330407" modified="20201208173114306" tags="dev modding [[modding API]] mietest" title="Mapgen memory optimisations">
 <pre>{{LuaTips}}
 
 ''This page is based on Paramat's [[forum topic|https://forum.minetest.net/viewtopic.php?t=16043]] and has been updated for Minetest 5.0.0.''
 
-Lua map generators can use excessive memory if they are not using these 3 optimisations. Not using these optimizations can eventually lead to OOM (out-of-memory) errors because the Lua mapgen wasted way too much memory. Applying this advice is '''strongly recommended''', and should make OOM errors much less likely. But there is no guarantee this will fix all OOM errors, your mapgen might still use excessive memory for other reasons, or the computer just has very limited memory.
+Lua map generators can use excessive memory if they are not using these 3 optimisations. Not using these optimizations can eventually lead to OOM (out-of-memory) errors because the Lua mapgen wasted way too much memory. Applying this advice is ''strongly recommended'', and should make OOM errors much less likely. But there is no guarantee this will fix all OOM errors, your mapgen might still use excessive memory for other reasons, or the computer just has very limited memory.
 
 !! Perlin noise objects: Only create once 
 ---
@@ -14353,13 +14353,11 @@ Many Lua mapgens are creating a new table for every mapchunk, while the previous
 
 A &lt;code&gt;buffer&lt;/code&gt; parameter was added in 0.4.13 to avoid this, a single table is re-used by overwriting the former values.
 
- For each of the functions with an optional `buffer` parameter:  If `buffer` is not
- nil, this table will be used to store the result instead of creating a new table.
-  
- #### Methods
- * `get_2d_map_flat(pos, buffer)`: returns a flat `&lt;size.x * size.y&gt;` element array of 2D noise
- with values starting at `pos={x=,y=}`
- * `get_3d_map_flat(pos, buffer)`: Same as `get_2d_map_flat`, but 3D noise
+For each of the functions with an optional &lt;code&gt;buffer&lt;/code&gt; parameter: If &lt;code&gt;buffer&lt;/code&gt; is not nil, this table will be used to store the result instead of creating a new table.
+
+!!!! Methods
+* &lt;code&gt;get_2d_map_flat(pos, buffer)&lt;/code&gt;: returns a flat &lt;code&gt;&lt;size.x * size.y&gt;&lt;/code&gt; element array of 2D noise with values starting at &lt;code&gt;pos={x=,y=}&lt;/code&gt;
+* &lt;code&gt;get_3d_map_flat(pos, buffer)&lt;/code&gt;: Same as &lt;code&gt;get_2d_map_flat&lt;/code&gt;, but 3D noise
 
 Localise the noise buffer outside &lt;code&gt;register_on_generated()&lt;/code&gt;
 Use the &lt;code&gt;buffer&lt;/code&gt; parameter in &lt;code&gt;get_3d_map_flat()&lt;/code&gt; etc.
