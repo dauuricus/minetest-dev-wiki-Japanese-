@@ -467,6 +467,8 @@ Error message and password prompt
 
 <li>Mod interoperability</li>
 
+<li>Mod name conflicts</li>
+
 <li>Modding FAQ</li>
 
 <li>Modding Intro</li>
@@ -13027,7 +13029,7 @@ Error message and password prompt
 <div created="20201208103610192" modified="20201208103627332" title="$:/state/plugin-info-896098052-$:/plugins/tiddlywiki/markdown--436478829">
 <pre>usage</pre>
 </div>
-<div created="20201208084806998" modified="20201208152607247" title="$:/state/sidebar">
+<div created="20201208084806998" modified="20201208154257478" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20201208045133702" modified="20201208121110136" title="$:/state/tab--1963855381">
@@ -13063,7 +13065,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208120514928" list="[[Main Page]] LuaJIT [[Lua API Documentation]] [[Modding FAQ]] [[Mapgen memory optimisations]] [[Modding Tips]] [[Mod interoperability]]" modified="20201208153339180" title="$:/StoryList">
+<div created="20201208120514928" list="" modified="20201208154259572" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14629,6 +14631,53 @@ On this wiki, the [[Groups/Custom groups]] page tries to document the usage of g
 
 
 [[Category:Mods]]
+</pre>
+</div>
+<div created="20201208155109318" modified="20201208160151250" tags="dev Lua [[Lua Tips]] mietest" title="Mod name conflicts">
+<pre>{{LuaTips}}
+In general, ''avoid'' installing two or more mods with the ''same name''! Doing so can and probably will lead to undesired behaviour. This includes having mods with the same name in different modpacks.
+
+The rest of this page describes what exactly happens.
+
+!! Minetest 0.4.7 and later 
+---
+!!! Rules 
+
+* If the mod loader finds two or more mods with the same name, at most one of them can be loaded.
+* If mods are not loaded due to name conflicts, warnings will be printed to infostream.
+* If the conflicting mods belong to different levels (see the next section), the mod from the highest level will be loaded.
+* If there are conflicting mods at the same level (and no conflicting mods at higher levels), the server will abort with an error.
+
+!!! Levels 
+
+# game mods in modpacks
+# game mods
+# world mods in modpacks
+# world mods
+# user (addon) mods in modpacks
+# user (addon) mods
+
+!!! Examples 
+
+* If the directories ''&lt;code&gt;games/survival/mods/bones&lt;/code&gt;'' and ''&lt;code&gt;mods/bones&lt;/code&gt;'' exist (and if the latter one is enabled), the latter will be loaded as it is a user mod, whereas the former is a game mod.
+* If the directories ''&lt;code&gt;mods/funmodpack1/funmod&lt;/code&gt;'' and ''&lt;code&gt;mods/funmodpack2/funmod&lt;/code&gt;'' exist (and no ''&lt;code&gt;funmod&lt;/code&gt;'' outside a modpack and they are both enabled), the server will abort.
+* ''&lt;code&gt;mods/folder1/folder1&lt;/code&gt;'' works but ''&lt;code&gt;mods/funmodpack/folder1/folder1&lt;/code&gt;'' gets ignored.
+
+!!! Discussion 
+
+These rules allow:
+* Overriding game- or world-provided mods with user mods.
+* Fixing a conflict caused by installing modpacks that contain the same mod, by installing a user mod with the same name.
+
+Warning: always make sure the overriding mod is compatible with other installed mods and games!
+
+!! Minetest 0.4.4-d1 to 0.4.6 
+---
+These versions do not check for mod name conflicts. Multiple mods with the same name will be loaded without warning, but dependency resolution becomes unreliable.
+
+!! Minetest 0.4.4 and older 
+---
+In versions up to 0.4.4 &amp;nbsp;&amp;ndash; before support for enabling/disabling mods in the world configuration was added &amp;nbsp;&amp;ndash; the mod loader would simply skip a mod if another mod with the same name was already loaded.
 </pre>
 </div>
 <div created="20201208091517249" modified="20201208104412815" tags="dev Lua mietest modding [[modding API]]" title="Modding FAQ">
