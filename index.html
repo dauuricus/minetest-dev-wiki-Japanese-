@@ -155,6 +155,8 @@ Error message and password prompt
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/theme</li>
 
+<li>$:/config/RelinkOnRename</li>
+
 <li>$:/core</li>
 
 <li>$:/core/ui/ControlPanel/Settings/codemirror/keyMap</li>
@@ -489,6 +491,8 @@ Error message and password prompt
 
 <li>Storing Data</li>
 
+<li>TableOfContents</li>
+
 </ul>
 </p>
 
@@ -524,6 +528,9 @@ Error message and password prompt
 </div>
 <div created="20201208063006259" modified="20201208063006259" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/theme">
 <pre>show</pre>
+</div>
+<div created="20201209045651040" modified="20201209045651040" title="$:/config/RelinkOnRename">
+<pre>yes</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" name="Core" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.22">
 <pre>{
@@ -13041,7 +13048,7 @@ Error message and password prompt
 <div created="20201208103610192" modified="20201208103627332" title="$:/state/plugin-info-896098052-$:/plugins/tiddlywiki/markdown--436478829">
 <pre>usage</pre>
 </div>
-<div created="20201208084806998" modified="20201208154257478" title="$:/state/sidebar">
+<div created="20201208084806998" modified="20201209044212314" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20201208045133702" modified="20201208121110136" title="$:/state/tab--1963855381">
@@ -13068,16 +13075,16 @@ Error message and password prompt
 <div created="20201208144739333" modified="20201208144822329" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
-<div created="20201208090520032" modified="20201208090520032" title="$:/state/tab/moresidebar-1850697562">
-<pre>$:/core/ui/MoreSideBar/Plugins</pre>
+<div created="20201208090520032" modified="20201209050213878" title="$:/state/tab/moresidebar-1850697562">
+<pre>$:/core/ui/MoreSideBar/Tags</pre>
 </div>
-<div created="20201208040117580" modified="20201208160706139" title="$:/state/tab/sidebar--595412856">
+<div created="20201208040117580" modified="20201209050246190" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201208180516674" list="Lua [[Modding Intro]] LuaJIT [[Lua API Documentation]] [[Modding Overview]] [[Mod interoperability]] [[Mapgen memory optimisations]] mg_flags minetest.conf [[Storing Data]]" modified="20201208192428821" title="$:/StoryList">
+<div created="20201209045119542" list="[[Lua API Documentation]] [[Modding FAQ]]" modified="20201209050251895" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -13133,12 +13140,12 @@ Error message and password prompt
         },
         &quot;$:/info/browser/language&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/language&quot;,
-            &quot;text&quot;: &quot;ja-JP&quot;
+            &quot;text&quot;: &quot;ja&quot;
         }
     }
 }</pre>
 </div>
-<div created="20201208040221295" modified="20201208184304817" title="$:/temp/NewTagName">
+<div created="20201208040221295" modified="20201209045736830" title="$:/temp/NewTagName">
 <pre></pre>
 </div>
 <div author="Paco Rivière" core-version="&gt;=5.0.0" created="20201208112229787" dependents="" description="Catalan (Spain)" icon="data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22810%22%20height%3D%22540%22%3E%0A%3Crect%20width%3D%22810%22%20height%3D%22540%22%20fill%3D%22%23FCDD09%22%2F%3E%0A%3Cpath%20stroke%3D%22%23DA121A%22%20stroke-width%3D%2260%22%20d%3D%22M0%2C90H810m0%2C120H0m0%2C120H810m0%2C120H0%22%2F%3E%0A%3C%2Fsvg%3E" modified="20201208112229787" name="ca-ES" original-plugin-type="language" original-tags="" original-title="$:/languages/ca-ES" original-type="application/json" requires-reload="no" server-url="https://tiddlywiki.com/library/v5.1.22/index.html" tags="$:/tags/RemoteAssetInfo" title="$:/temp/RemoteAssetInfo/https://tiddlywiki.com/library/v5.1.22/index.html/$:/languages/ca-ES" type="text/vnd.tiddlywiki" version="5.1.22">
@@ -14258,7 +14265,7 @@ LuaJIT が使用される場合、ソースの[[ Lua フォルダ|https://github
 [[Category:Lua]]
 </pre>
 </div>
-<div created="20201208102432393" modified="20201208103105574" tags="dev Lua [[modding API]] mietest" title="Lua API Documentation" type="text/vnd.tiddlywiki">
+<div created="20201208102432393" modified="20201209050300452" tags="dev Lua [[modding API]] mietest TableOfContents" title="Lua API Documentation" type="text/vnd.tiddlywiki">
 <pre>The Lua API of Minetest is extensively documented. This page tells you which documentation exists, and where to find it.
 
 !! Official documentation 
@@ -14297,7 +14304,7 @@ However, we have a bit of a mess right now: There is currently a large amount of
 <div created="20201208101015274" modified="20201208101121182" tags="Lua" title="LuaJIT" type="text/vnd.tiddlywiki">
 <pre>[[https://luajit.org/]]</pre>
 </div>
-<div created="20201208040515596" modified="20201208090638899" tags="mietest modding dev" title="Main Page" type="text/vnd.tiddlywiki">
+<div created="20201208040515596" modified="20201209045740533" tags="mietest modding dev TableOfContents" title="Main Page" type="text/vnd.tiddlywiki">
 <pre>{{Languages}}
 
 Welcome to the ''Minetest Developer Wiki'', here you learn how Minetest and games and mods for Minetest are developed.
@@ -14813,7 +14820,7 @@ These versions do not check for mod name conflicts. Multiple mods with the same 
 In versions up to 0.4.4 &amp;nbsp;&amp;ndash; before support for enabling/disabling mods in the world configuration was added &amp;nbsp;&amp;ndash; the mod loader would simply skip a mod if another mod with the same name was already loaded.
 </pre>
 </div>
-<div created="20201208091517249" modified="20201208104412815" tags="dev Lua mietest modding [[modding API]]" title="Modding FAQ">
+<div created="20201208091517249" modified="20201209050202079" tags="dev Lua mietest modding [[modding API]] TableOfContents" title="Modding FAQ">
 <pre>{{Languages}}
 
 This page includes frequently asked questions about mod and game development for Minetest. For general advice, see also [[Modding Tips]].
@@ -14908,7 +14915,7 @@ Paramat shows how it works for Minetest Game here: [[https://forum.minetest.net/
 [[Category:Mods]] [[Category:Modding API]]
 </pre>
 </div>
-<div created="20201208043220342" modified="20201208064838196" tags="mietest modding dev [[modding API]]" title="Modding Intro" type="text/vnd.tiddlywiki">
+<div created="20201208043220342" modified="20201209045839156" tags="mietest modding dev [[modding API]] TableOfContents" title="Modding Intro" type="text/vnd.tiddlywiki">
 <pre>{{Languages}}
 !Modding Intro
 ---
@@ -14942,7 +14949,7 @@ A very basic overview is written in [[Modding Overview]].
 
 [[Category:Modding API]]</pre>
 </div>
-<div created="20201208063929512" modified="20201208121919776" tags="dev Lua modding [[modding API]] mietest" title="Modding Overview" type="text/vnd.tiddlywiki">
+<div created="20201208063929512" modified="20201209045916668" tags="dev Lua modding [[modding API]] mietest TableOfContents" title="Modding Overview" type="text/vnd.tiddlywiki">
 <pre>{{LuaTips}}
 
 This article is aimed at modding newcomers to help get a very broad overview over the [[Lua API|Modding Intro]] of Minetest and get started with a couple of hands-on examples. This page is not official advice, not a complete tutorial in Lua, nor a reference. It does not replace the official [[Lua API Documentation]].
@@ -15500,6 +15507,13 @@ end
 
 If the file in e.g. worlds/yourworld/mod_storage/random_messages was formatted properly you would already be done loading the random messages. What's even better is that you can now add chat commands to manage the messages table and e.g. store the table via mod storage's &lt;source enclose=&quot;none&quot;&gt;from_table&lt;/source&gt; when the chat command is run or the server is shutdown. This way you can very easily add messages at runtime without having to restart the server while making sure these messages are persisted across server restarts.
 </pre>
+</div>
+<div caption="Contents" created="20201209044321979" list="$:/core/ui/SideBar/Open" modified="20201209045656837" tags="$:/tags/SideBar" title="TableOfContents">
+<pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
+
+&lt;&lt;toc-selective-expandable 'TableOfContents'&gt;&gt;
+
+&lt;/div&gt;</pre>
 </div>
 
 
