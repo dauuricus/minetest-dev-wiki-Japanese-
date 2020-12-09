@@ -149,6 +149,8 @@ Error message and password prompt
 
 <li>$:/config/codemirror/lineNumbers</li>
 
+<li>$:/config/DefaultSidebarTab</li>
+
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/close-all</li>
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/refresh</li>
@@ -208,6 +210,8 @@ Error message and password prompt
 <li>$:/state/plugin-info-257074006-$:/plugins/tiddlywiki/codemirror-mode-markdown---1152951722</li>
 
 <li>$:/state/plugin-info-896098052-$:/plugins/tiddlywiki/markdown--436478829</li>
+
+<li>$:/state/showeditpreview</li>
 
 <li>$:/state/sidebar</li>
 
@@ -457,6 +461,8 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla/options/stickytitles</li>
 
+<li>Groups</li>
+
 <li>Lua</li>
 
 <li>Lua API Documentation</li>
@@ -519,6 +525,9 @@ Error message and password prompt
 </div>
 <div created="20201208072021193" modified="20201208072021193" title="$:/config/codemirror/lineNumbers" type="bool">
 <pre>true</pre>
+</div>
+<div created="20201209125419525" modified="20201209125419525" title="$:/config/DefaultSidebarTab">
+<pre>TableOfContents</pre>
 </div>
 <div created="20201208144642188" modified="20201208144642188" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/close-all">
 <pre>show</pre>
@@ -13048,6 +13057,9 @@ Error message and password prompt
 <div created="20201208103610192" modified="20201208103627332" title="$:/state/plugin-info-896098052-$:/plugins/tiddlywiki/markdown--436478829">
 <pre>usage</pre>
 </div>
+<div created="20201209124459336" modified="20201209124836269" title="$:/state/showeditpreview">
+<pre>yes</pre>
+</div>
 <div created="20201208084806998" modified="20201209044212314" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
@@ -13060,8 +13072,8 @@ Error message and password prompt
 <div created="20201208063406557" modified="20201208103953870" title="$:/state/tab--219645345">
 <pre>$:/core/ui/ControlPanel/Plugins/Add/Plugins</pre>
 </div>
-<div created="20201208071959803" modified="20201208071959803" title="$:/state/tab--697582678">
-<pre>$:/core/ui/ControlPanel/Settings/CodeMirror</pre>
+<div created="20201208071959803" modified="20201209125412659" title="$:/state/tab--697582678">
+<pre>$:/core/ui/ControlPanel/Settings/TiddlyWiki</pre>
 </div>
 <div created="20201208104313822" modified="20201208144855493" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Themes</pre>
@@ -13069,8 +13081,8 @@ Error message and password prompt
 <div created="20201208152628129" modified="20201208152628129" title="$:/state/tab-1163638994">
 <pre>$:/core/ui/MoreSideBar/Plugins/Theme</pre>
 </div>
-<div created="20201208045028836" modified="20201208145027044" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Appearance</pre>
+<div created="20201208045028836" modified="20201209125354511" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Settings</pre>
 </div>
 <div created="20201208144739333" modified="20201208144822329" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
@@ -13078,13 +13090,13 @@ Error message and password prompt
 <div created="20201208090520032" modified="20201209050213878" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Tags</pre>
 </div>
-<div created="20201208040117580" modified="20201209051901605" title="$:/state/tab/sidebar--595412856">
+<div created="20201208040117580" modified="20201209125445157" title="$:/state/tab/sidebar--595412856">
 <pre>TableOfContents</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201209051022517" list="" modified="20201209052102875" title="$:/StoryList">
+<div created="20201209122947932" list="Groups [[Storing Data]] [[Player physics]] [[Mod name conflicts]] [[Mod interoperability]] [[Modding Tips]] [[Lua API Documentation]] [[Modding FAQ]] [[Modding Overview]] [[Modding Intro]] [[Main Page]]" modified="20201209125814963" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14244,6 +14256,45 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20201208045201177" modified="20201208045218647" title="$:/themes/tiddlywiki/vanilla/options/stickytitles">
 <pre>no</pre>
 </div>
+<div created="20201209123838474" ind="10" modified="20201209125837377" tags="TableOfContents mietest [[modding API]] dev Lua" title="Groups">
+<pre>Groups can be used for several things in Minetest. They are mostly used to define the digging times of nodes, but there many other uses.
+
+!! Define groups 
+
+```Lua
+The groups of a node or tool are defined in the definiton table:
+
+minetest.register_node(&quot;mod:testnode&quot;, {
+	-- [...]
+	groups = {crumbly=1, meat=2,},
+})
+```
+
+The rating can be any integer, but &lt;code&gt;0&lt;/code&gt; is equal to &lt;code&gt;nil&lt;/code&gt;. Please refer to &lt;code&gt;lua_api.txt&lt;/code&gt; for a full and up-to-date explanation on groups.
+
+!! Group names 
+---
+This section lists some groups which are used.
+
+!!! Special groups 
+These groups are directly used by Minetest to treat group members differently, and they are not tied to any particular mod or game. You can find a full list of special groups in in &lt;code&gt;lua_api.txt&lt;/code&gt;.
+
+!!! Custom groups 
+
+Everyone can freely invent new groups on the fly. In this wiki, we document group names that modders use frequently.
+
+* [[Groups/Shared groups]]: Custom groups with a widely-accepted standard meaning
+* [[Groups/Custom groups]]: Groups which are somewhat specific to games and mods
+
+!! Other uses 
+---
+Mods can use groups for whatever they want. They can be used in [[minetest.register_craft|crafting recipes]], [[minetest.register_abm|ABM definitions]] and more functions like this: &lt;code&gt;&quot;group:groupname&quot;&lt;/code&gt; (e.g. &lt;code&gt;&quot;group:crumbly&quot;&lt;/code&gt;).
+
+To use them in the mod code the function &lt;code&gt;minetest.get_item_group(&quot;name&quot;, &quot;group&quot;)&lt;/code&gt; is useful.
+
+[[Category:Misc]]
+</pre>
+</div>
 <div created="20201208045521637" modified="20201208192731714" tags="modding mietest dev Lua" title="Lua" type="text/vnd.tiddlywiki">
 <pre>{{Languages}}
 
@@ -14265,7 +14316,7 @@ LuaJIT が使用される場合、ソースの[[ Lua フォルダ|https://github
 [[Category:Lua]]
 </pre>
 </div>
-<div created="20201208102432393" ind="4" modified="20201209052057383" tags="dev Lua [[modding API]] mietest TableOfContents" title="Lua API Documentation" type="text/vnd.tiddlywiki">
+<div created="20201208102432393" ind="04" modified="20201209124154171" tags="dev Lua [[modding API]] mietest TableOfContents" title="Lua API Documentation" type="text/vnd.tiddlywiki">
 <pre>The Lua API of Minetest is extensively documented. This page tells you which documentation exists, and where to find it.
 
 !! Official documentation 
@@ -14556,7 +14607,7 @@ For a totally flat world without any holes:
 <div created="20201208184742916" modified="20201208184742916" title="minetest.conf">
 <pre></pre>
 </div>
-<div created="20201208124040803" modified="20201208152544495" tags="dev Lua modding [[Lua Tips]] mietest" title="Mod interoperability" type="text/vnd.tiddlywiki">
+<div created="20201208124040803" ind="06" modified="20201209125646616" tags="dev Lua modding [[Lua Tips]] mietest TableOfContents [[modding API]]" title="Mod interoperability" type="text/vnd.tiddlywiki">
 <pre>{{LuaTips}}
 This page is aimed towards modders and lists a couple of mods and conventions which are known in the community.
 
@@ -14773,7 +14824,7 @@ On this wiki, the [[Groups/Custom groups]] page tries to document the usage of g
 [[Category:Mods]]
 </pre>
 </div>
-<div created="20201208155109318" modified="20201208161002130" tags="dev Lua [[Lua Tips]] mietest" title="Mod name conflicts">
+<div created="20201208155109318" ind="07" modified="20201209125658505" tags="dev Lua [[Lua Tips]] mietest TableOfContents [[modding API]]" title="Mod name conflicts">
 <pre>{{LuaTips}}
 In general, ''avoid'' installing two or more mods with the ''same name''! Doing so can and probably will lead to undesired behaviour. This includes having mods with the same name in different modpacks.
 
@@ -14820,7 +14871,7 @@ These versions do not check for mod name conflicts. Multiple mods with the same 
 In versions up to 0.4.4 &amp;nbsp;&amp;ndash; before support for enabling/disabling mods in the world configuration was added &amp;nbsp;&amp;ndash; the mod loader would simply skip a mod if another mod with the same name was already loaded.
 </pre>
 </div>
-<div created="20201208091517249" ind="3" modified="20201209052031289" tags="dev Lua mietest modding [[modding API]] TableOfContents" title="Modding FAQ">
+<div created="20201208091517249" ind="03" modified="20201209124137522" tags="dev Lua mietest modding [[modding API]] TableOfContents" title="Modding FAQ">
 <pre>{{Languages}}
 
 This page includes frequently asked questions about mod and game development for Minetest. For general advice, see also [[Modding Tips]].
@@ -14915,7 +14966,7 @@ Paramat shows how it works for Minetest Game here: [[https://forum.minetest.net/
 [[Category:Mods]] [[Category:Modding API]]
 </pre>
 </div>
-<div created="20201208043220342" ind="1" modified="20201209051926738" tags="mietest modding dev [[modding API]] TableOfContents" title="Modding Intro" type="text/vnd.tiddlywiki">
+<div created="20201208043220342" ind="01" modified="20201209124026914" tags="mietest modding dev [[modding API]] TableOfContents" title="Modding Intro" type="text/vnd.tiddlywiki">
 <pre>{{Languages}}
 !Modding Intro
 ---
@@ -14949,7 +15000,7 @@ A very basic overview is written in [[Modding Overview]].
 
 [[Category:Modding API]]</pre>
 </div>
-<div created="20201208063929512" ind="2" modified="20201209051953189" tags="dev Lua modding [[modding API]] mietest TableOfContents" title="Modding Overview" type="text/vnd.tiddlywiki">
+<div created="20201208063929512" ind="02" modified="20201209124121406" tags="dev Lua modding [[modding API]] mietest TableOfContents" title="Modding Overview" type="text/vnd.tiddlywiki">
 <pre>{{LuaTips}}
 
 This article is aimed at modding newcomers to help get a very broad overview over the [[Lua API|Modding Intro]] of Minetest and get started with a couple of hands-on examples. This page is not official advice, not a complete tutorial in Lua, nor a reference. It does not replace the official [[Lua API Documentation]].
@@ -15179,7 +15230,7 @@ That's it! You should now have a basic understanding on how the Lua API roughly 
 [[Category:Modding API]]
 </pre>
 </div>
-<div created="20201208105015147" modified="20201208125608551" tags="dev mietest modding Lua [[Lua Tips]]" title="Modding Tips">
+<div created="20201208105015147" ind="05" modified="20201209125629234" tags="dev mietest modding Lua [[Lua Tips]] TableOfContents [[modding API]]" title="Modding Tips">
 <pre>{{LuaTips}}
 
 This page is a random collection of various tips and tricks, and solutions to common tasks/problems that occur frequently in mod/game development. See also: [[Modding FAQ]]
@@ -15318,7 +15369,7 @@ Note: Some of these can be checked quickly with [[QA-Block|https://forum.minetes
 [[Category:Mods]] [[Category:Modding API]]
 </pre>
 </div>
-<div created="20201208163547500" modified="20201208164451126" tags="[[Lua Tips]]" title="Player physics">
+<div created="20201208163547500" ind="08" modified="20201209125742637" tags="[[Lua Tips]] TableOfContents dev mietest [[modding API]]" title="Player physics">
 <pre>{{LuaTips}}
 ''Player physics'' refers to special physical attributes of the player that can be changed in Lua with &lt;code&gt;player:set_physics_override&lt;/code&gt;. With this function, you can set e.g. jump strength, walking speed and gravity for each player.
 
@@ -15371,7 +15422,7 @@ It is not known if any alternative approaches (besides Player Phyics API) has be
 In the game’s developer documentation, explicitly say that only the game is allowed to set physics, and that external mods aren’t. Resolve and in-game conflicts by hand. This is obviously the least flexible solution, but it's also the simplest. But for larger games with more complex physics, you will quickly run into problems.
 </pre>
 </div>
-<div created="20201208185016341" modified="20201208191533412" tags="" title="Storing Data" type="text/vnd.tiddlywiki">
+<div created="20201208185016341" ind="09" modified="20201209125813458" tags="TableOfContents dev Lua [[modding API]] mietest" title="Storing Data" type="text/vnd.tiddlywiki">
 <pre>{{LuaTips}}
 !! Introduction
 ---
@@ -15508,7 +15559,7 @@ end
 If the file in e.g. worlds/yourworld/mod_storage/random_messages was formatted properly you would already be done loading the random messages. What's even better is that you can now add chat commands to manage the messages table and e.g. store the table via mod storage's &lt;source enclose=&quot;none&quot;&gt;from_table&lt;/source&gt; when the chat command is run or the server is shutdown. This way you can very easily add messages at runtime without having to restart the server while making sure these messages are persisted across server restarts.
 </pre>
 </div>
-<div caption="Contents" created="20201209044321979" list="$:/core/ui/SideBar/Open" modified="20201209051601495" tags="$:/tags/SideBar" title="TableOfContents">
+<div caption="Contents" created="20201209044321979" list-after="$:/core/ui/SideBar/Open" modified="20201209123221202" tags="$:/tags/SideBar" title="TableOfContents">
 <pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
 
 &lt;&lt;toc-selective-expandable 'TableOfContents' sort[ind]&gt;&gt;
