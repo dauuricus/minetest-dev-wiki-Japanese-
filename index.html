@@ -171,6 +171,8 @@ Error message and password prompt
 
 <li>$:/isEncrypted</li>
 
+<li>$:/language</li>
+
 <li>$:/languages/ja-JP</li>
 
 <li>$:/plugins/tiddlywiki/codemirror</li>
@@ -457,9 +459,19 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
+<li>$:/themes/tiddlywiki/vanilla/metrics/fontsize</li>
+
+<li>$:/themes/tiddlywiki/vanilla/metrics/lineheight</li>
+
+<li>$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth</li>
+
+<li>$:/themes/tiddlywiki/vanilla/metrics/storyleft</li>
+
 <li>$:/themes/tiddlywiki/vanilla/options/sidebarlayout</li>
 
 <li>$:/themes/tiddlywiki/vanilla/options/stickytitles</li>
+
+<li>$:/view</li>
 
 <li>Groups</li>
 
@@ -513,8 +525,8 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20201208045840330" modified="20201208045840330" title="$:/config/AnimationDuration">
-<pre>200</pre>
+<div created="20201208045840330" modified="20201209133016491" title="$:/config/AnimationDuration">
+<pre>300</pre>
 </div>
 <div created="20201208144737811" modified="20201208144737811" title="$:/config/AutoSave">
 <pre>no</pre>
@@ -10017,6 +10029,9 @@ Error message and password prompt
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
+<div created="20201209133033067" modified="20201209133115665" title="$:/language">
+<pre>$:/languages/en-GB</pre>
+</div>
 <div author="Makoto Hirohashi, OGOSHI Masayuki, pekopeko1" core-version="&gt;=5.1.4" dependents="" description="Japanese (Japan)" name="ja-JP" plugin-type="language" title="$:/languages/ja-JP" type="application/json" version="5.1.22">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -13060,20 +13075,20 @@ Error message and password prompt
 <div created="20201209124459336" modified="20201209124836269" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20201208084806998" modified="20201209044212314" title="$:/state/sidebar">
+<div created="20201208084806998" modified="20201209132702345" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20201208045133702" modified="20201208121110136" title="$:/state/tab--1963855381">
-<pre>$:/core/ui/ControlPanel/Theme</pre>
+<div created="20201208045133702" modified="20201209132926465" title="$:/state/tab--1963855381">
+<pre>$:/core/ui/ControlPanel/StoryView</pre>
 </div>
-<div created="20201208120606695" modified="20201208120610571" title="$:/state/tab--2112689675">
-<pre>$:/core/ui/ControlPanel/Advanced</pre>
+<div created="20201208120606695" modified="20201209133010777" title="$:/state/tab--2112689675">
+<pre>$:/core/ui/ControlPanel/Basics</pre>
 </div>
 <div created="20201208063406557" modified="20201208103953870" title="$:/state/tab--219645345">
 <pre>$:/core/ui/ControlPanel/Plugins/Add/Plugins</pre>
 </div>
-<div created="20201208071959803" modified="20201209125412659" title="$:/state/tab--697582678">
-<pre>$:/core/ui/ControlPanel/Settings/TiddlyWiki</pre>
+<div created="20201208071959803" modified="20201209132955175" title="$:/state/tab--697582678">
+<pre>$:/core/ui/ControlPanel/Settings/CodeMirror</pre>
 </div>
 <div created="20201208104313822" modified="20201208144855493" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Themes</pre>
@@ -13081,8 +13096,8 @@ Error message and password prompt
 <div created="20201208152628129" modified="20201208152628129" title="$:/state/tab-1163638994">
 <pre>$:/core/ui/MoreSideBar/Plugins/Theme</pre>
 </div>
-<div created="20201208045028836" modified="20201209125354511" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Settings</pre>
+<div created="20201208045028836" modified="20201209133204117" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
 <div created="20201208144739333" modified="20201208144822329" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
@@ -13090,13 +13105,13 @@ Error message and password prompt
 <div created="20201208090520032" modified="20201209050213878" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Tags</pre>
 </div>
-<div created="20201208040117580" modified="20201209125445157" title="$:/state/tab/sidebar--595412856">
+<div created="20201208040117580" modified="20201209133154069" title="$:/state/tab/sidebar--595412856">
 <pre>TableOfContents</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20201209122947932" list="[[Main Page]] [[core engine]]" modified="20201209130144770" title="$:/StoryList">
+<div created="20201209132403654" list="$:/ControlPanel [[Modding Overview]] [[Lua API Documentation]] [[Modding FAQ]] [[Modding Intro]] [[Main Page]]" modified="20201209133200311" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -14116,8 +14131,8 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20201208112229741" modified="20201208112229741" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.22/index.html" url="https://tiddlywiki.com/library/v5.1.22/index.html">
 <pre>loaded</pre>
 </div>
-<div created="20201208063206405" modified="20201208180852832" title="$:/theme">
-<pre>$:/themes/tiddlywiki/snowwhite</pre>
+<div created="20201208063206405" modified="20201209132714515" title="$:/theme">
+<pre>$:/themes/tiddlywiki/vanilla</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Centralises the story river" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.1.22">
 <pre>{
@@ -14250,11 +14265,26 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
     }
 }</pre>
 </div>
+<div created="20201209132440723" modified="20201209132754548" title="$:/themes/tiddlywiki/vanilla/metrics/fontsize">
+<pre>14px</pre>
+</div>
+<div created="20201209132450386" modified="20201209132802299" title="$:/themes/tiddlywiki/vanilla/metrics/lineheight">
+<pre>24px</pre>
+</div>
+<div created="20201209132840019" modified="20201209132852338" title="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth">
+<pre>300px</pre>
+</div>
+<div created="20201209132818586" modified="20201209132827374" title="$:/themes/tiddlywiki/vanilla/metrics/storyleft">
+<pre>0px</pre>
+</div>
 <div created="20201208045145456" modified="20201208045152015" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout">
 <pre>fluid-fixed</pre>
 </div>
 <div created="20201208045201177" modified="20201208045218647" title="$:/themes/tiddlywiki/vanilla/options/stickytitles">
 <pre>no</pre>
+</div>
+<div created="20201209132600004" modified="20201209133205921" title="$:/view">
+<pre>classic</pre>
 </div>
 <div created="20201209123838474" ind="10" modified="20201209125837377" tags="TableOfContents mietest [[modding API]] dev Lua" title="Groups">
 <pre>Groups can be used for several things in Minetest. They are mostly used to define the digging times of nodes, but there many other uses.
